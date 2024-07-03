@@ -20,30 +20,36 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Share my thoughts with you">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Benson&#39;s blog">
-<meta property="og:url" content="http://www.zhoubencheng.com/page/3/index.html">
+  <meta name="description" content="添加依赖 设计一个能够处理客户端HTTP请求的Web应用，我们需要项目添加对Servlet框架的依赖，在pom.xml文件中添加依赖如下 123456&lt;dependency&gt;  &lt;groupId&gt;javax.servlet&lt;&#x2F;groupId&gt;  &lt;artifactId&gt;javax.servlet-api&lt;&#x2F;artifactId&gt;  &amp;lt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Servlet">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/07/04/Servlet/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="Share my thoughts with you">
+<meta property="og:description" content="添加依赖 设计一个能够处理客户端HTTP请求的Web应用，我们需要项目添加对Servlet框架的依赖，在pom.xml文件中添加依赖如下 123456&lt;dependency&gt;  &lt;groupId&gt;javax.servlet&lt;&#x2F;groupId&gt;  &lt;artifactId&gt;javax.servlet-api&lt;&#x2F;artifactId&gt;  &amp;lt">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zhoubencheng.com/images/JavaWebImg/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png">
+<meta property="article:published_time" content="2024-07-03T17:31:27.000Z">
+<meta property="article:modified_time" content="2024-07-03T17:39:24.882Z">
 <meta property="article:author" content="Benson">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="后端">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhoubencheng.com/images/JavaWebImg/%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95.png">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/page/3/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/07/04/Servlet/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Benson's blog - 最好的安排</title>
+  <title>Servlet | Benson's blog</title>
   
 
 
@@ -154,13 +160,14 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/04/23/%E6%8F%92%E5%80%BC%E4%B8%8E%E6%8B%9F%E5%90%88/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/04/Servlet/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -172,10 +179,9 @@
       <meta itemprop="name" content="Benson's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/04/23/%E6%8F%92%E5%80%BC%E4%B8%8E%E6%8B%9F%E5%90%88/" class="post-title-link" itemprop="url">插值与拟合</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Servlet
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -183,27 +189,28 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2024-04-23 23:39:41" itemprop="dateCreated datePublished" datetime="2024-04-23T23:39:41+08:00">2024-04-23</time>
+              <time title="创建时间：2024-07-04 01:31:27 / 修改时间：01:39:24" itemprop="dateCreated datePublished" datetime="2024-07-04T01:31:27+08:00">2024-07-04</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-03 21:57:50" itemprop="dateModified" datetime="2024-07-03T21:57:50+08:00">2024-07-03</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
                 </span>
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -214,240 +221,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="插值多项式">插值多项式</h2>
+        <h2 id="添加依赖">添加依赖</h2>
+<p>设计一个能够处理客户端<code>HTTP</code>请求的Web应用，我们需要项目添加对<code>Servlet</code>框架的依赖，在<code>pom.xml</code>文件中添加依赖如下</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<span id="more"></span>
 <blockquote>
-<p>什么是插值问题？</p>
-<p>已知一系列离散点，需要找到一个多项式，在这些结点上<strong>数值相等</strong>，其他结点上<strong>数值近似</strong>，所以插值公式存在以下两个问题</p>
+<p><code>&lt;scope&gt;</code>标签解释：标注依赖和本项目项目<strong>开发流程</strong>的关系</p>
 <ul>
-<li>不是次数越高越好</li>
-<li>存在误差，详见<a href="#插值多项式余项推导">插值多项式的余项</a></li>
+<li><code>provided</code>：在项目编译和运行时需要此依赖，在最终打包项目时不需要此依赖</li>
+<li><code>compile</code>：标签默认模式，该依赖会在最终被打包进项目中</li>
+<li><code>runtime</code>：在运行项目时需要此依赖，在编译时项目时不需要</li>
 </ul>
 </blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/04/23/%E6%8F%92%E5%80%BC%E4%B8%8E%E6%8B%9F%E5%90%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<h2 id="添加servlet请求处理类型">添加<code>Servlet</code>请求处理类型</h2>
+<p>对于客户端一个具体的HTTP请求，我们需要实现一个<code>Servlet</code>类型来处理，代码如下</p>
+<figure class="highlight java"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@WebServlet("/test")</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TestServlet</span> <span class="keyword">extends</span> <span class="title class_">HttpServlet</span> {</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">doGet</span><span class="params">(HttpServletRequest req, HttpServletResponse resp)</span> <span class="keyword">throws</span> ServletException, IOException {</span><br><span class="line">        List&lt;Test&gt; tests = <span class="keyword">new</span> <span class="title class_">TestServiceImpl</span>().TestSelect();</span><br><span class="line">        System.out.println(tests);</span><br><span class="line">        req.setAttribute(<span class="string">"list"</span>, tests);</span><br><span class="line">        req.getRequestDispatcher(<span class="string">"list.jsp"</span>).forward(req, resp);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>Tips:</p>
+<ul>
+<li><p><code>@WebServlet("/test")</code>标记，指定了当前<code>Servlet</code>将处理客户端的哪种请求，该请求由客户端指定的URL路径特殊标识</p></li>
+<li><p><code>extends HttpServlet</code>继承父类<code>HttpServlet</code>，只有当前<code>Servlet</code>类型继承该父类以后，才是一个真正的<code>Servlet</code>处理类型</p></li>
+<li><p>对于<code>HTTP</code>中的<code>GET</code>请求，我们需要重写父类的<code>doGet</code>方法，同理，处理<code>POST</code>请求则重写<code>doPost</code>方法。在<code>doGet</code>方法中，通过参数<code>HttpServletRequest</code>类型，我们可以获取HTTP请求报文的所有参数</p></li>
+<li><p><code>req.setAttribute</code>方法在上述<code>doGet</code>方法中，将<code>Model</code>层服务提供的数据库表单添加到<code>HttpServletRequest</code>的属性中，<strong>属性名</strong>为<code>list</code>，<strong>属性值</strong>为<code>tests</code>（服务层提供的数据），也可以理解为<code>HTTP</code>请求报文中的请求行添加一个字段信息。</p>
+<blockquote>
+<p>为什么会在浏览器提交HTTP请求报文后，我们还会在<code>doGet</code>方法中丰富这个请求的内容？可以这样理解，HTTP请求报文信息对应一个<code>HttpServletRequest</code>实例，在<code>setAttrubute</code>方法之后，我们会将GET请求的处理转移到目标资源JSP文件中执行，而执行内容就是将数据放在JSP文件中返回回去，所以为了能够让JSP文件能够得到我们MVC架构中Model层提供数据，我们会将该数据以请求报文信息的形式转交给JSP文件。</p>
+</blockquote></li>
+<li><p><code>req.getRequestDispatcher</code>方法将GET请求的处理转移到指定资源中进行，这里就是<code>list.jsp</code>文件，而改行代码中的<code>forward</code>方法会将<strong>请求类型</strong>和<strong>响应类型</strong>都转发到该<code>jsp</code>文件中。单就这个转发操作而言，就是把客户端的HTTP请求转交给目标资源<code>jsp</code>进行处理，而该<code>jsp</code>资源有可以通过之前的到的<code>list</code>属性将服务器得到的数据嵌在<code>jsp</code>文件中，最后解析并返回给浏览器</p></li>
+</ul>
+<h2 id="mvc设计模式">MVC设计模式</h2>
+<h3 id="概念解析">概念解析</h3>
+<ul>
+<li><code>Model</code>：处理或获取数据，属于MVC设计模式的最底层，将整个<code>Web</code>项目的功能目标拆分为一个个小功能，例如数据库查询、数据处理等</li>
+<li><code>Controller</code>：负责响应用户并调用<code>Model</code>的服务，其作为中间层，接收来自<code>View</code>的输入，解析请求并选择调用<code>Model</code>的哪一项服务，最后将<code>Model</code>返回的服务内容反馈到<code>View</code>中</li>
+<li><code>View</code>：UI界面，用户直接看到的<code>Web</code>信息</li>
+</ul>
+<h3 id="举例说明">举例说明</h3>
+<p>MVC设计模式可以存在于“浏览器查询服务器数据库”这一简单的DEMO中，项目结构如下</p>
+<p><img src="/images/JavaWebImg/文件目录.png" style="zoom:50%;"></p>
+<p>用MVC设计模式理解该项目架构</p>
+<ol start="0" type="1">
+<li><code>View</code>层，浏览器发出数据库查询的HTTP请求</li>
+<li><code>Controller</code>层，<code>TestServlet</code>类型监听客户端的相应请求，并在触发后开始调用<code>Model</code>的服务</li>
+<li><code>Model</code>层，<code>TestMapper</code>接口借助<code>MyBatis</code>框架，实现Java方法直接操作数据库的方式，接口的函数体逻辑定义在<code>TestMapper.xml</code>映射器文件中</li>
+<li><code>Model</code>层，<code>Test</code>类型作为一个<code>JavaBean</code>，其实并没有运行任何业务逻辑，其存在的意义只是将数据库中的记录以<code>Java</code>类型的形式表现出来，方便在Java代码中使用。这里<code>TestMapper</code>接口函数得到的数据库数据以<code>Test</code>类型的形式返回给<code>TestServlet</code></li>
+<li><code>Controller</code>层，<code>TestServlet</code>处理类型得到数据以后，准备将其放在JSP资源中返回回去</li>
+<li><code>View</code>层，最终浏览器将JSP资源解析得到的HTML资源渲染在用户面前</li>
+</ol>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/04/20/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/04/20/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/" class="post-title-link" itemprop="url">常微分方程数值解法</a>
-        </h2>
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/%E5%90%8E%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 后端</a>
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-20 17:15:25" itemprop="dateCreated datePublished" datetime="2024-04-20T17:15:25+08:00">2024-04-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-03 21:57:11" itemprop="dateModified" datetime="2024-07-03T21:57:11+08:00">2024-07-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="introduction">introduction</h2>
-<p>简单的常微分方程求解问题通式，我们的问题是从这个方程组入手，得到<code>y</code>关于<code>x</code>的函数关系，但是解析解一般难以求解，因此从数值解求法入手
-<span class="math display">\[
-\begin{cases}
-\frac{dy}{dx} = f(x, y) &amp;x \in [a, b]\\
-y(a) = y_0
-\end{cases}
-\]</span> <span class="math inline">\(Lipschitz条件: |f(x, y_1) - f(x,
-y_2)| \leq L|y_1 - y_0|， x \in [a, b]\)</span>
-当方程组中二元函数关系<code>f</code>满足该条件时，常微分方程有解</p>
-<blockquote>
-<p><code>Lipschitz</code>条件可以理解为：在任意x属于[a.
-b]的闭区间中，<code>f(x. y)</code>的任意一条纵向曲线都是<strong>导数有界</strong></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/04/20/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">群论复习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-11-27 19:03:51" itemprop="dateCreated datePublished" datetime="2023-11-27T19:03:51+08:00">2023-11-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-03 22:22:38" itemprop="dateModified" datetime="2024-07-03T22:22:38+08:00">2024-07-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="代数系统">代数系统</h2>
-<blockquote>
-<p>代数系统主要由两部分组成：1. 元素组成的集合 2.
-作用在集合上的二元运算</p>
-<blockquote>
-<p>以下知识梳理将围绕这两个部分进行</p>
-</blockquote>
-</blockquote>
-<pre class="mermaid">flowchart LR
-ques1["判断给定集合和运算是否构成代数系统(封闭性判断)"]
-ques2["判断二元运算性质"]
-ques3["求二元运算性质"]
-atten["两种运算的表达形式1.解析式 2.运算表"]
-ques2 --&gt; atten
-ques3 --&gt; atten
-ques4["子代数判定"]
-ques5["计算积代数"]
-ques6["判读、证明函数是某一类同态"]
-title["本章主要题型"] --&gt; ques1
-title --&gt; ques2
-title --&gt; ques3
-title --&gt; ques4
-title --&gt; ques5
-title --&gt; ques6</pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/04/JSP/" rel="prev" title="JSP note">
+      <i class="fa fa-chevron-left"></i> JSP note
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  </nav>
 
 
 
@@ -499,6 +348,7 @@ title --&gt; ques6</pre>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%BE%9D%E8%B5%96"><span class="nav-number">1.</span> <span class="nav-text">添加依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0servlet%E8%AF%B7%E6%B1%82%E5%A4%84%E7%90%86%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">添加Servlet请求处理类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mvc%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">MVC设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A7%A3%E6%9E%90"><span class="nav-number">3.1.</span> <span class="nav-text">概念解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E8%AF%B4%E6%98%8E"><span class="nav-number">3.2.</span> <span class="nav-text">举例说明</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -659,59 +509,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 

@@ -160,6 +160,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/04/Servlet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ME.ico">
+      <meta itemprop="name" content="Benson">
+      <meta itemprop="description" content="Share my thoughts with you">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Benson's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/04/Servlet/" class="post-title-link" itemprop="url">Servlet</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-04 01:31:27 / 修改时间：01:39:24" itemprop="dateCreated datePublished" datetime="2024-07-04T01:31:27+08:00">2024-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="添加依赖">添加依赖</h2>
+<p>设计一个能够处理客户端<code>HTTP</code>请求的Web应用，我们需要项目添加对<code>Servlet</code>框架的依赖，在<code>pom.xml</code>文件中添加依赖如下</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.0.1<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">scope</span>&gt;</span>provided<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/07/04/Servlet/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/04/JSP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ME.ico">
+      <meta itemprop="name" content="Benson">
+      <meta itemprop="description" content="Share my thoughts with you">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Benson's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/04/JSP/" class="post-title-link" itemprop="url">JSP note</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-04 01:30:41 / 修改时间：01:34:29" itemprop="dateCreated datePublished" datetime="2024-07-04T01:30:41+08:00">2024-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="jsp简介">JSP简介</h2>
+<p>​
+首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言<code>HTML</code>)和<code>Java</code>结合，以制作动态页面的技术。在JSP技术中，我们可以在<code>HTML</code>中插入<code>Java</code>代码。</p>
+<p>​
+JSP技术实现的关键在于<strong>内嵌于网络服务器</strong>的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下</p>
+<ol type="1">
+<li>转译 <code>.jsp</code> ----&gt; <code>.java</code></li>
+<li>编译 <code>.java</code> --&gt;<code>.class</code></li>
+<li>转化 <code>.class</code>--&gt;<code>HTML</code></li></ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/07/04/JSP/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/03/SQL/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -308,178 +468,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/02/MyBatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/02/MyBatis/" class="post-title-link" itemprop="url">MyBatis</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-07-02 23:35:17" itemprop="dateCreated datePublished" datetime="2024-07-02T23:35:17+08:00">2024-07-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-03 21:46:59" itemprop="dateModified" datetime="2024-07-03T21:46:59+08:00">2024-07-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>MyBatis简介：MyBatis是支持定制化SQL、存储过程以及<strong>高级映射</strong>的持久层框架，该框架几乎避开了所有JDBC代码。Mybatis可以对其自身配置和原生Map映射使用xml注解，并且可以将java中的<strong>接口</strong>和<strong>POJOs</strong>（Plain
-Old Java Object）映射为<strong>数据库中的记录</strong></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/02/MyBatis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">电子技术实习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-29 16:26:53" itemprop="dateCreated datePublished" datetime="2024-06-29T16:26:53+08:00">2024-06-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-03 21:55:15" itemprop="dateModified" datetime="2024-07-03T21:55:15+08:00">2024-07-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="树莓派硬件结构">树莓派硬件结构</h2>
-<h3 id="树莓派4b硬件结构">树莓派4B硬件结构</h3>
-<p><img src="/images/ElectronicPracticeImg/4B.png" style="zoom:80%;"></p>
-<ul>
-<li>DSI(Display serial
-interface)<strong>视频信号</strong>传输接口，将视频信号从处理器传输到显示器的一种高速<strong>串行</strong>接口</li>
-<li>POE(Power Over
-Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据和电力的技术，这种技术使得网络设备如AP、IP摄像头等无需单独的电源线，只需要通过以太网电网缆线就能获得电力供应</li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -551,7 +539,7 @@ Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -564,7 +552,7 @@ Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据�
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

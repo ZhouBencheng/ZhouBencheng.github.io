@@ -20,19 +20,21 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Share my thoughts with you">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类文章">
-<meta property="og:url" content="http://www.zhoubencheng.com/categories/index.html">
+  <meta name="description" content="JSP简介 ​ 首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言HTML)和Java结合，以制作动态页面的技术。在JSP技术中，我们可以在HTML中插入Java代码。 ​ JSP技术实现的关键在于内嵌于网络服务器的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下  转译 .jsp ----">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP note">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/07/04/JSP/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="Share my thoughts with you">
+<meta property="og:description" content="JSP简介 ​ 首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言HTML)和Java结合，以制作动态页面的技术。在JSP技术中，我们可以在HTML中插入Java代码。 ​ JSP技术实现的关键在于内嵌于网络服务器的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下  转译 .jsp ----">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-06-30T15:25:31.000Z">
-<meta property="article:modified_time" content="2024-07-02T03:26:17.957Z">
+<meta property="article:published_time" content="2024-07-03T17:30:41.000Z">
+<meta property="article:modified_time" content="2024-07-03T17:34:29.321Z">
 <meta property="article:author" content="Benson">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="前端">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/categories/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/07/04/JSP/">
 
 
 <script id="page-configurations">
@@ -40,13 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类文章 | Benson's blog
-</title>
+  <title>JSP note | Benson's blog</title>
   
 
 
@@ -156,51 +157,143 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/04/JSP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ME.ico">
+      <meta itemprop="name" content="Benson">
+      <meta itemprop="description" content="Share my thoughts with you">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Benson's blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          JSP note
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">分类文章
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2024-07-04 01:30:41 / 修改时间：01:34:29" itemprop="dateCreated datePublished" datetime="2024-07-04T01:30:41+08:00">2024-07-04</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="jsp简介">JSP简介</h2>
+<p>​
+首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言<code>HTML</code>)和<code>Java</code>结合，以制作动态页面的技术。在JSP技术中，我们可以在<code>HTML</code>中插入<code>Java</code>代码。</p>
+<p>​
+JSP技术实现的关键在于<strong>内嵌于网络服务器</strong>的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下</p>
+<ol type="1">
+<li>转译 <code>.jsp</code> ----&gt; <code>.java</code></li>
+<li>编译 <code>.java</code> --&gt;<code>.class</code></li>
+<li>转化 <code>.class</code>--&gt;<code>HTML</code> <span id="more"></span> ​
+以上工作全部都由<strong>网络服务器</strong>软件完成，更详细地说，首先由服务器中的JSP引擎将客户端请求的JSP资源解析为<code>.class</code>文件，该文件也是<code>Servlet</code>类型的字节文件，最后由<code>Servlet</code>工具将该<code>Servlet</code>类型转化为<code>HTML</code>资源。注意上述三步中没有浏览器软件的参与，浏览器只需要渲染<code>HTML</code>等前端样式即可。</li>
+</ol>
+<p>​
+由此可见，<code>Servlet</code>技术的目的不仅仅在于处理浏览器客户端的<code>HTTP</code>请求，同时也实现了<code>.jsp</code>到<code>.html</code>的解析引擎功能。</p>
+<blockquote>
+<p>What can browser do?
+浏览器可以渲染以下几种但不完全只有以下几种资源类型</p>
+<ul>
+<li>HTML静态网页</li>
+<li>CSS 网页样式</li>
+<li>JavaScript脚本，B/S交互逻辑</li>
+<li>图像类型，如<code>jpeg</code> <code>gif</code>
+<code>png</code>等</li>
+<li>视频/音频等多媒体类型</li>
+<li>XML 传输和存储数据</li>
+<li>JSON 轻量级数据交换格式</li>
+<li>PDF 文档显示</li>
+<li>WebAssembly 二进制指令格式，提高浏览器应用运行性能</li>
+</ul>
+</blockquote>
+<h2 id="基础语法">基础语法</h2>
+<h3 id="jsp指令">JSP指令</h3>
+<ul>
+<li><p><code>&lt;%@ page ... %&gt;</code>
+定义页面属性，如脚本语言，字符编码，EL表达式是能等等</p>
+<figure class="highlight jsp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> isELIgnored=<span class="string">"false"</span> %&gt;</span><br></pre></td></tr></tbody></table></figure></li>
+<li><p><code>&lt;%@ include ... %&gt;</code> 引入其他文件</p></li>
+<li><p><code>&lt;%@ taglib ... %&gt;</code>
+引入外部标签库，其中<code>prefix</code>属性指调用该标签库中标签时需要使用该前缀<code>c:&lt;...&gt;</code></p>
+<figure class="highlight jsp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@taglib</span> prefix=<span class="string">"c"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/07/03/SQL/" rel="prev" title="SQL">
+      <i class="fa fa-chevron-left"></i> SQL
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/07/04/Servlet/" rel="next" title="Servlet">
+      Servlet <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 2 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaWeb/">JavaWeb</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/USTB-courses/">USTB courses</a><span class="category-list-count">5</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -251,6 +344,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">JSP简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">JSP指令</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
