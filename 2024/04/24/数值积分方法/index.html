@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/ME.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/ME.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/ME.ico">
+  <link rel="mask-icon" href="/images/ME.ico" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="数值微分  为了能够通过有限的离散已知点，推算一个函数在某一点处的导数值，这类问题称为数值微分  用插值构造数值微分公式  为了能够得到任意点的导数值，我们一般先用插值多项式\(p_n(x)\)拟合目标函数\(f(x)\)，再根据插值多项式求导来求导数值  插值构造微分的余项">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数值积分方法">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/04/24/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Benson&#39;s blog">
+<meta property="og:description" content="数值微分  为了能够通过有限的离散已知点，推算一个函数在某一点处的导数值，这类问题称为数值微分  用插值构造数值微分公式  为了能够得到任意点的导数值，我们一般先用插值多项式\(p_n(x)\)拟合目标函数\(f(x)\)，再根据插值多项式求导来求导数值  插值构造微分的余项">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.zhoubencheng.com/images/NumCalcImg/calculate.png">
+<meta property="og:image" content="http://www.zhoubencheng.com/images/NumCalcImg/%E8%AF%AF%E5%B7%AE%E4%BA%8B%E5%90%8E%E4%BC%B0%E8%AE%A1.jpg">
+<meta property="article:published_time" content="2024-04-23T16:07:34.000Z">
+<meta property="article:modified_time" content="2024-07-03T13:57:34.773Z">
+<meta property="article:author" content="Benson">
+<meta property="article:tag" content="数值计算">
+<meta property="article:tag" content="高等数学">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.zhoubencheng.com/images/NumCalcImg/calculate.png">
+
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/04/24/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>数值积分方法 | Benson's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Benson's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">最好的安排</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/04/24/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ME.png">
+      <meta itemprop="name" content="Benson">
+      <meta itemprop="description" content="Share my thoughts with you">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Benson's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          数值积分方法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-24 00:07:34" itemprop="dateCreated datePublished" datetime="2024-04-24T00:07:34+08:00">2024-04-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-07-03 21:57:34" itemprop="dateModified" datetime="2024-07-03T21:57:34+08:00">2024-07-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="数值微分">数值微分</h2>
+<blockquote>
+<p>为了能够通过有限的离散已知点，推算一个函数在某一点处的导数值，这类问题称为数值微分</p>
+</blockquote>
+<h3 id="用插值构造数值微分公式">用插值构造数值微分公式</h3>
+<blockquote>
+<p>为了能够得到任意点的导数值，我们一般先用插值多项式<span class="math inline">\(p_n(x)\)</span>拟合目标函数<span class="math inline">\(f(x)\)</span>，再根据插值多项式求导来求导数值</p>
+</blockquote>
+<h4 id="插值构造微分的余项">插值构造微分的余项</h4>
+<p><img src="/images/NumCalcImg/calculate.png" style="zoom: 50%;"></p>
+<span id="more"></span>
+<p><strong>注意</strong>：这里得到的插值构造微分的余项公式中，当带入所有已知离散点<span class="math inline">\(x_0, x_1, ...,
+x_n\)</span>，都能得到等号右边，加法右边的<span class="math inline">\(w_{n+1}(x)\)</span>为0，因此当我们要求的导数点就是我们已知的离散点<span class="math inline">\(x_i\)</span>时，余项就是 <span class="math display">\[
+\begin{equation}
+f'(x_i) - p_n'(x) = \frac {f^{(n+1)}(\xi)}
+{(n+1)!}w_{n+1}'(x)
+\end{equation}
+\]</span></p>
+<h4 id="常见的插值构造微分公式">常见的插值构造微分公式</h4>
+<p><strong>三点近似插值公式</strong> <span class="math display">\[
+\begin{cases}
+f'(x_0) = {1 \over 2h} [-3f(x_0) + 4f(x_1) - f(x_2)]\\
+f'(x_1) = {1 \over 2h} [-f(x_0) + f(x_2)]\\
+f'(x_2) = {1 \over 2h} [f(x_0) -4f(x_1) + 3f(x_2)]
+\end{cases}
+\]</span>
+对于导数估值的余项分析，采用上述得到的余项公式计算即可，因为这里的三点公式所求导数点都是已知点<span class="math inline">\(x_i\)</span></p>
+<h2 id="数值积分">数值积分</h2>
+<p><strong>一切数值积分公式都满足以下特点</strong> <span class="math display">\[
+\int_{a}^{b}f(x)dx = \sum_{k = 0}^{n}A_kf(x_k)
+\]</span>
+即利用已知离散点得函数值，以及各个公式要求得待定系数得到积分的近似公式</p>
+<h3 id="插值构造数值积分">插值构造数值积分</h3>
+<p>由于所有插值多项式计算公式最终得到的多项式结果仅与离散点有关，因此此处采用lagrange插值公式进行带入
+<span class="math display">\[
+\int_{a}^{b}f(x)dx = \int_{a}^{b} \prod_{j \ne k \atop j = 0}^{n}
+\frac{x - x_j}{x_k - x_j}f(x_k)dx\\
+\Rightarrow A_k = \int_{a}^{b} \prod_{j \ne k \atop j = 0}^{n} \frac{x -
+x_j}{x_k - x_j}dx
+\]</span>
+以上得到插值构造数值积分中的待定系数恰为lagrange插值公式中<strong>每一个离散点的系数</strong></p>
+<blockquote>
+<p>插值构造数值积分的余项 <span class="math display">\[
+R_n[f] = \int_{a}^{b}f(x)dx - \sum_{k = 0}^{n}A_kf(x_k) =
+\int_{a}^{b}f(x) - p_n(x)dx =
+\int_{a}^{b}\frac{f^{(n+1)}(\xi)}{(n+1)!}w_{n+1}(x)dx
+\]</span>
+显然，由多项式插值余项公式的积分可以直接得到当前插值构造数值积分的余项</p>
+</blockquote>
+<h3 id="代数精度">代数精度</h3>
+<p>当数值积分公式的一系列系数确定以后，对这个数值积分公式的代数精度做出以下评定：</p>
+<p>对于任何次数不超过m，但对于m+1次代数多项式不能准确成立，则称该数值积分公式有m次代数精度</p>
+<blockquote>
+<p>关于代数精度的详细验证，则每个次数阶上仅使用对应的幂函数<span class="math inline">\(x^p\)</span>进行数值积分验证即可</p>
+</blockquote>
+<h3 id="newton-cotes公式">Newton-Cotes公式</h3>
+<p>当已知离散点都是<strong>等距离点</strong>时，可以使用Newton-Cotes公式代系数进行计算，至于使用<code>梯形公式 n=1</code>、<code>simpson公式 n=2</code>还是<code>Cotes公式 n=4</code>取决于你当前已知的离散点数量</p>
+<ul>
+<li><p><strong>梯形公式</strong> <span class="math display">\[
+\int_{a}^{b}f(x)dx = \frac{(b-a)}{2}[f(a) + f(b)] \\
+\]</span></p>
+<p><strong>余项分析</strong>，先有以下公式 <span class="math display">\[
+R_1[f] = \int_{a}^{b}R_n(x)dx =
+\int_{a}^{b}\frac{f''(\xi)}{2}w_1(x)dx
+=\int_{a}^{b}\frac{f''(\xi)}{2}(x - a)(x - b)dx
+\]</span> 使用<code>积分第二中值定理</code> <span class="math display">\[
+\int_{a}^{b}\frac{f''(\xi)}{2}(x - a)(x - b)dx =
+\frac{f''(\eta)}{2}\int_{a}^{b}(x-a)(x-b)dx\\
+\Rightarrow O(h^3)
+\]</span></p></li>
+<li><p><strong>Simpson公式</strong> <span class="math display">\[
+\int_{a}^{b}f(x)dx = { { (b - a) \over 6}[f(a) + 4f(\frac{a + b}{2}) +
+f(b)]}\\
+\]</span> <strong>余项分析</strong> <span class="math display">\[
+R_2[f] = \int_{a}^{b}\frac{f^{(3)}(\xi)}{3!}w_3(x)dx\\
+\Rightarrow O(h^5)
+\]</span></p></li>
+<li><p><strong>Cotes公式</strong> <span class="math display">\[
+\int_{a}^{b}f(x)dx = \frac{(b - a)}{32}[7f(x_0) + 32f(x_1) + 12f(x_2) +
+32f(x_3) + 7f(x_4)]
+\]</span> <strong>余项分析</strong> <span class="math display">\[
+R_4[f] = \int_{a}^{b}\frac{f^{(5)}(\xi)}{5!}w_5(x)dx\\
+\Rightarrow O(h^7)
+\]</span></p></li>
+</ul>
+<p><strong>代数精度判定定理1</strong>：当有n+1个结点的插值公式计算得到的数值积分公式，其代数精度<strong>至少</strong>为n</p>
+<blockquote>
+<p>注意定理1适用于所有插值公式得到的数值积分公式，但是注意这里对代数精度的判定只有<strong>至少</strong>这个程度，并不能准确的判断代数精度，而具体代数精度在具体题目中，可能需要以此讨论幂次递增的幂函数来验证一个公式的代数精度</p>
+</blockquote>
+<p><strong>代数精度判定定理2</strong>：设<span class="math inline">\(f(x)\)</span>在<span class="math inline">\([a,
+b]\)</span>有n+2阶导数 <span class="math display">\[
+R_n[f] =
+\begin{cases}
+{f^{(n+2)}(\xi) \over (n+2)!} \int_{a}^{b}xw_{n+1}(x)dx, n为偶数\\
+{f^{(n+1)}(\xi) \over (n+1)!} \int_{a}^{b}w_{n+1}(x)dx， n为奇数
+\end{cases}
+其中\xi \in [a, b]\\
+此处存疑，未能理解公式含义\\
+看起来好像是代数精度的可确定下限可由余项的导数阶减一确定
+\]</span>
+当n为奇数时，Newton-Cotes公式的代数精度<strong>至少</strong>为n；当n为偶数时，Newton-Cotes公式的代数精度<strong>至少</strong>为n+1</p>
+<h2 id="复合低阶newton-cotes公式">复合低阶Newton-Cotes公式</h2>
+<h3 id="复合求积公式">复合求积公式</h3>
+<p>当我们的需要求解的积分<strong>区间过大</strong>时，直接套用Newton-Cotes公式最造成误差偏大，此时可以将大区间拆解成一个个小区间，并在小区间上依次套用相同阶的Newton-Cotes公式，最终得到低阶复合Newton-Cotes公式</p>
+<ul>
+<li><p><strong>复合梯形公式</strong> <span class="math display">\[
+\int_{a}^{b} f(x)dx = \sum_{k = 0}^{n - 1}\int_{x_k}^{x_{k+1}}f(x)dx\\
+= \sum_{k = 0}^{n - 1} \frac{h}{2} [f(x_k) + f(x_{k+1})]\\
+= \frac{h}{2}[f(a) +  2\sum_{k = 1}^{n - 1}f(x_k) + f(b)]
+\]</span></p></li>
+<li><p><strong>复合Simpson公式</strong></p></li>
+</ul>
+<p><span class="math display">\[
+\int_{a}^{b} f(x)dx = \sum_{k = 0}^{n - 1}\int_{x_k}^{x_{k+1}}f(x)dx\\
+= \frac{h}{6}\sum_{k = 0}^{n - 1}[f(x_k) + 4f(x_{k + \frac{1}{2}}) +
+f(x_{k+1})], 注意此处x_{k + \frac{1}{2}}表示x_k和x_{k+1}的中点\\
+= \frac{h}{6}[f(a) + 4\sum_{k = 0}^{n - 1}f(x_{k+\frac{1}{2}}) +
+2\sum_{k = 1}^{n - 1}f(x_k) + f(b)]
+\]</span></p>
+<h3 id="复合求积公式的收敛阶">复合求积公式的收敛阶</h3>
+<p>定义：如果一种复合求积公式<span class="math inline">\(I_n\)</span>，有如下特性，则定义该收敛阶 <span class="math display">\[
+\lim_{h \rightarrow0} \frac{I-I_n}{h^p} = c, c为常数
+\]</span> 此时称该求积公式<span class="math inline">\(I_n\)</span>的收敛阶为<code>p</code></p>
+<blockquote>
+<p>已知上述两种复合公式的余项分别是<span class="math inline">\(O(h^2)\)</span>和<span class="math inline">\(O(h^4)\)</span>，而且两个公式的收敛阶也分别是2、4</p>
+</blockquote>
+<h2 id="误差事后估计">误差事后估计</h2>
+<p><img src="/images/NumCalcImg/误差事后估计.jpg" style="zoom: 25%;"></p>
+<h2 id="变步长复合梯形求积公式">变步长复合梯形求积公式</h2>
+<p>对于复合梯形求积公式，有如下特点</p>
+<p>当我们选择求<span class="math inline">\(T_n\)</span>时，会将区间分为n份，也就是包括区间的两个端点在内总共有n+1个点用于分隔，那么在有<span class="math inline">\(T_n\)</span>的基础上求<span class="math inline">\(T_{2n}\)</span>时，从几何数轴上看就是在已有的分割点之间再加一组分割点。因此衍生出如下变步长求积公式
+<span class="math display">\[
+T_{2^k} = \frac12T_{2^{k-1}} + \frac{b-a}{2^k} \sum_{i=1}^{n}f[a +
+(2i-1)\frac{b-a}{2^k}]
+\]</span></p>
+<h2 id="romberg算法">Romberg算法</h2>
+<p>根据上述提到的误差事后估计算法，做出如下公式总结 <span class="math display">\[
+\begin{cases}
+\varDelta = I - I_n = \frac13(T_{2n} - T_n)\\
+I = \frac43T_{2n} - \frac13T_n
+\end{cases}
+\begin{cases}
+\varDelta = I - I_n = \frac{1}{15}(S_{2n} - S_n)\\
+I = \frac{16}{15}S_{2n} - \frac{1}{15}S_n
+\end{cases}
+\begin{cases}
+\varDelta = I - I_n = \frac{1}{63}(C_{2n} - C_n)\\
+I = \frac{64}{63}C_{2n} - \frac{1}{63}C_n
+\end{cases}
+\]</span></p>
+<p>利用上述的恶道的3组公式，可以得到Romberg求积迭代的公式，其思想主要是先使用梯形公式组中的<span class="math inline">\(I\)</span>估计作为下一组的<span class="math inline">\(S_n\)</span>，而由Simpson公式得到的<span class="math inline">\(I\)</span>同样作为下一组Cotes公式的<span class="math inline">\(C_n\)</span>进行带入，在这些公式的嵌套过程中可能会使用到<span class="math inline">\(T_{4n}, T_{8n},
+S_{4n}\)</span>等高阶变步长迭代结果，因此可以画出类似计算差商结果计算的递进图，来画出Romberg算法中从<span class="math inline">\(梯形 \rightarrow Simpson \rightarrow
+Cotes\)</span>的积分近似</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 数值计算</a>
+              <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 高等数学</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/04/23/%E6%8F%92%E5%80%BC%E4%B8%8E%E6%8B%9F%E5%90%88/" rel="prev" title="插值与拟合">
+      <i class="fa fa-chevron-left"></i> 插值与拟合
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/" rel="next" title="电子技术实习">
+      电子技术实习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86"><span class="nav-number">1.</span> <span class="nav-text">数值微分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%8F%92%E5%80%BC%E6%9E%84%E9%80%A0%E6%95%B0%E5%80%BC%E5%BE%AE%E5%88%86%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.</span> <span class="nav-text">用插值构造数值微分公式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9E%84%E9%80%A0%E5%BE%AE%E5%88%86%E7%9A%84%E4%BD%99%E9%A1%B9"><span class="nav-number">1.1.1.</span> <span class="nav-text">插值构造微分的余项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E6%8F%92%E5%80%BC%E6%9E%84%E9%80%A0%E5%BE%AE%E5%88%86%E5%85%AC%E5%BC%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">常见的插值构造微分公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">数值积分</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8F%92%E5%80%BC%E6%9E%84%E9%80%A0%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86"><span class="nav-number">2.1.</span> <span class="nav-text">插值构造数值积分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E6%95%B0%E7%B2%BE%E5%BA%A6"><span class="nav-number">2.2.</span> <span class="nav-text">代数精度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#newton-cotes%E5%85%AC%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">Newton-Cotes公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E4%BD%8E%E9%98%B6newton-cotes%E5%85%AC%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">复合低阶Newton-Cotes公式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">复合求积公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%90%88%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F%E7%9A%84%E6%94%B6%E6%95%9B%E9%98%B6"><span class="nav-number">3.2.</span> <span class="nav-text">复合求积公式的收敛阶</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AF%E5%B7%AE%E4%BA%8B%E5%90%8E%E4%BC%B0%E8%AE%A1"><span class="nav-number">4.</span> <span class="nav-text">误差事后估计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%98%E6%AD%A5%E9%95%BF%E5%A4%8D%E5%90%88%E6%A2%AF%E5%BD%A2%E6%B1%82%E7%A7%AF%E5%85%AC%E5%BC%8F"><span class="nav-number">5.</span> <span class="nav-text">变步长复合梯形求积公式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#romberg%E7%AE%97%E6%B3%95"><span class="nav-number">6.</span> <span class="nav-text">Romberg算法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Benson"
+      src="/images/ME.png">
+  <p class="site-author-name" itemprop="name">Benson</p>
+  <div class="site-description" itemprop="description">Share my thoughts with you</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ZhouBencheng" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ZhouBencheng" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:zhoubencheng2022@163.com" title="E-Mail → mailto:zhoubencheng2022@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Benson</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+if (document.querySelectorAll('pre.mermaid').length) {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mermaid@8/dist/mermaid.min.js', () => {
+    mermaid.initialize({
+      theme    : 'dark',
+      logLevel : 3,
+      flowchart: { curve     : 'linear' },
+      gantt    : { axisFormat: '%m/%d/%Y' },
+      sequence : { actorMargin: 50 }
+    });
+  }, window.mermaid);
+}
+</script>
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
