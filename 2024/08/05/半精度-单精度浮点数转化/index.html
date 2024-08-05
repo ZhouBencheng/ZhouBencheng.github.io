@@ -20,21 +20,20 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="JSP简介 ​ 首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言HTML)和Java结合，以制作动态页面的技术。在JSP技术中，我们可以在HTML中插入Java代码。 ​ JSP技术实现的关键在于内嵌于网络服务器的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下  转译 .jsp ----">
+  <meta name="description" content="IEEE754浮点数规范复习 在IEEE754中，不同精度的浮点数各部分位宽如下表所示    格式 总位数 阶码位数 尾数位数     半精度 16 5 10   单精度 32 8 23   双精度 64 11 52   四倍精度 128 15 112    规格化数和非规格化数  规格化数 阶码不允许出现全0或者全1的情况，指数在阶码中的编码形式为偏移码，偏移量为\(2^{k - 1} - 1\">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JSP note">
-<meta property="og:url" content="http://www.zhoubencheng.com/2024/07/04/JSP/index.html">
+<meta property="og:title" content="半精度&#x2F;单精度浮点数转化">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/08/05/%E5%8D%8A%E7%B2%BE%E5%BA%A6-%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BD%AC%E5%8C%96/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="JSP简介 ​ 首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言HTML)和Java结合，以制作动态页面的技术。在JSP技术中，我们可以在HTML中插入Java代码。 ​ JSP技术实现的关键在于内嵌于网络服务器的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下  转译 .jsp ----">
+<meta property="og:description" content="IEEE754浮点数规范复习 在IEEE754中，不同精度的浮点数各部分位宽如下表所示    格式 总位数 阶码位数 尾数位数     半精度 16 5 10   单精度 32 8 23   双精度 64 11 52   四倍精度 128 15 112    规格化数和非规格化数  规格化数 阶码不允许出现全0或者全1的情况，指数在阶码中的编码形式为偏移码，偏移量为\(2^{k - 1} - 1\">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-07-03T17:30:41.000Z">
-<meta property="article:modified_time" content="2024-07-03T17:34:29.321Z">
+<meta property="article:published_time" content="2024-08-05T09:54:23.000Z">
+<meta property="article:modified_time" content="2024-08-05T11:01:08.867Z">
 <meta property="article:author" content="Benson">
-<meta property="article:tag" content="Java">
-<meta property="article:tag" content="前端">
+<meta property="article:tag" content="计算机系统基础">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/2024/07/04/JSP/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/08/05/%E5%8D%8A%E7%B2%BE%E5%BA%A6-%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BD%AC%E5%8C%96/">
 
 
 <script id="page-configurations">
@@ -47,7 +46,7 @@
   };
 </script>
 
-  <title>JSP note | Benson's blog</title>
+  <title>半精度/单精度浮点数转化 | Benson's blog</title>
   
 
 
@@ -167,7 +166,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/04/JSP/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/08/05/%E5%8D%8A%E7%B2%BE%E5%BA%A6-%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BD%AC%E5%8C%96/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -180,7 +179,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          JSP note
+          半精度/单精度浮点数转化
         </h1>
 
         <div class="post-meta">
@@ -191,16 +190,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-07-04 01:30:41 / 修改时间：01:34:29" itemprop="dateCreated datePublished" datetime="2024-07-04T01:30:41+08:00">2024-07-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-                </span>
+              <time title="创建时间：2024-08-05 17:54:23 / 修改时间：19:01:08" itemprop="dateCreated datePublished" datetime="2024-08-05T17:54:23+08:00">2024-08-05</time>
             </span>
 
           
@@ -221,46 +211,78 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="jsp简介">JSP简介</h2>
-<p>​
-首先，JSP既不是一种编程语言，也不是一种文件格式，这是一种将静态标签(超文本标记语言<code>HTML</code>)和<code>Java</code>结合，以制作动态页面的技术。在JSP技术中，我们可以在<code>HTML</code>中插入<code>Java</code>代码。</p>
-<p>​
-JSP技术实现的关键在于<strong>内嵌于网络服务器</strong>的JSP引擎，服务器要根据HTTP请求需要的JSP资源，将其一步步解析为HTML资源，并返回给浏览器进行渲染展示，流程如下</p>
-<ol type="1">
-<li>转译 <code>.jsp</code> ----&gt; <code>.java</code></li>
-<li>编译 <code>.java</code> --&gt;<code>.class</code></li>
-<li>转化 <code>.class</code>--&gt;<code>HTML</code> <span id="more"></span> ​
-以上工作全部都由<strong>网络服务器</strong>软件完成，更详细地说，首先由服务器中的JSP引擎将客户端请求的JSP资源解析为<code>.class</code>文件，该文件也是<code>Servlet</code>类型的字节文件，最后由<code>Servlet</code>工具将该<code>Servlet</code>类型转化为<code>HTML</code>资源。注意上述三步中没有浏览器软件的参与，浏览器只需要渲染<code>HTML</code>等前端样式即可。</li>
-</ol>
-<p>​
-由此可见，<code>Servlet</code>技术的目的不仅仅在于处理浏览器客户端的<code>HTTP</code>请求，同时也实现了<code>.jsp</code>到<code>.html</code>的解析引擎功能。</p>
+        <h2 id="ieee754浮点数规范复习">IEEE754浮点数规范复习</h2>
+<p>在IEEE754中，不同精度的浮点数各部分位宽如下表所示</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>总位数</th>
+<th>阶码位数</th>
+<th>尾数位数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>半精度</td>
+<td>16</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>单精度</td>
+<td>32</td>
+<td>8</td>
+<td>23</td>
+</tr>
+<tr>
+<td>双精度</td>
+<td>64</td>
+<td>11</td>
+<td>52</td>
+</tr>
+<tr>
+<td>四倍精度</td>
+<td>128</td>
+<td>15</td>
+<td>112</td>
+</tr>
+</tbody>
+</table>
+<p>规格化数和非规格化数</p>
+<ul>
+<li><p>规格化数</p>
+<p>阶码不允许出现<strong>全0</strong>或者<strong>全1</strong>的情况，指数在阶码中的编码形式为<strong>偏移码</strong>，偏移量为<span class="math inline">\(2^{k - 1} - 1\)</span></p></li>
+<li><p>非规格化数</p>
+<ul>
+<li>阶码全1
+<ul>
+<li>尾数全0，表示∞</li>
+<li>尾数非0，表示NaN(Not a number)</li>
+</ul></li>
+<li>阶码全0
+<ul>
+<li>尾数全0，表示浮点数0</li>
+<li>尾数非0，指数仍然为<span class="math inline">\(1 -
+offset\)</span>，底数表示<span class="math inline">\(0.M\)</span>，注意此时不同于规格化数默认小数点左侧为1</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="c语言转换实现">C语言转换实现</h2>
+<p>该方法中需要注意的是非规格化数<code>0.···</code>的转化，该部分代码将<code>fraction</code>部分的编码持续左移，直到最高位1超出10位的位宽，其目的是重新构造规格化表示的小数，所以可以看到<code>exponent</code>也在同步递减来保持原来的指数</p>
 <blockquote>
-<p>What can browser do?
-浏览器可以渲染以下几种但不完全只有以下几种资源类型</p>
-<ul>
-<li>HTML静态网页</li>
-<li>CSS 网页样式</li>
-<li>JavaScript脚本，B/S交互逻辑</li>
-<li>图像类型，如<code>jpeg</code> <code>gif</code>
-<code>png</code>等</li>
-<li>视频/音频等多媒体类型</li>
-<li>XML 传输和存储数据</li>
-<li>JSON 轻量级数据交换格式</li>
-<li>PDF 文档显示</li>
-<li>WebAssembly 二进制指令格式，提高浏览器应用运行性能</li>
-</ul>
+<p>我们知道在阶码全0的非规格化数中存在一种‘合法’表示的浮点数，该浮点数的小数部分<strong>前不补1</strong>，同时阶码部分仍视为<span class="math inline">\(1 -
+offset\)</span>（原因是用于和最小的规格化浮点数平滑的连接）</p>
 </blockquote>
-<h2 id="基础语法">基础语法</h2>
-<h3 id="jsp指令">JSP指令</h3>
-<ul>
-<li><p><code>&lt;%@ page ... %&gt;</code>
-定义页面属性，如脚本语言，字符编码，EL表达式是能等等</p>
-<figure class="highlight jsp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=<span class="string">"text/html;charset=UTF-8"</span> language=<span class="string">"java"</span> isELIgnored=<span class="string">"false"</span> %&gt;</span><br></pre></td></tr></tbody></table></figure></li>
-<li><p><code>&lt;%@ include ... %&gt;</code> 引入其他文件</p></li>
-<li><p><code>&lt;%@ taglib ... %&gt;</code>
-引入外部标签库，其中<code>prefix</code>属性指调用该标签库中标签时需要使用该前缀<code>c:&lt;...&gt;</code></p>
-<figure class="highlight jsp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%<span class="meta">@taglib</span> prefix=<span class="string">"c"</span> uri=<span class="string">"http://java.sun.com/jsp/jstl/core"</span> %&gt;</span><br></pre></td></tr></tbody></table></figure></li>
-</ul>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="comment">// 此处如果是MacOS，稍微别名一下类型</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> __APPLE__</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">u_int16_t</span> <span class="type">uint16_t</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">u_int32_t</span> <span class="type">uint32_t</span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">float</span> <span class="title function_">convert_Float16_to_float</span><span class="params">(_Float16 val)</span> {</span><br><span class="line">    <span class="type">uint16_t</span> fp16 = *(<span class="type">uint16_t</span>*)&amp;val;</span><br><span class="line">    <span class="type">uint32_t</span> sign = (fp16 &amp; <span class="number">0x8000</span>) &lt;&lt; <span class="number">16</span>;</span><br><span class="line">    <span class="type">uint32_t</span> exponent = (fp16 &amp; <span class="number">0x7C00</span>) &gt;&gt; <span class="number">10</span>;</span><br><span class="line">    <span class="type">uint32_t</span> fraction = (fp16 &amp; <span class="number">0x03FF</span>);</span><br><span class="line">    <span class="comment">// 非规格化数处理</span></span><br><span class="line">    <span class="keyword">if</span> (exponent == <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">if</span> (fraction == <span class="number">0</span>) { <span class="comment">// 0</span></span><br><span class="line">            <span class="keyword">return</span> *(<span class="type">float</span>*)&amp;sign;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// 0.···数规格化</span></span><br><span class="line">        exponent = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> ((fraction &amp; <span class="number">0x0400</span>) == <span class="number">0</span>) {</span><br><span class="line">            fraction &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">            exponent -= <span class="number">1</span>;</span><br><span class="line">        }</span><br><span class="line">        fraction &amp;= ~<span class="number">0x0400</span>;</span><br><span class="line">    } <span class="keyword">else</span> <span class="keyword">if</span> (exponent == <span class="number">0x001F</span>) {</span><br><span class="line">        <span class="keyword">if</span> (fraction == <span class="number">0</span>) { <span class="comment">// ∞</span></span><br><span class="line">            sign |= <span class="number">0x7F800000</span>;</span><br><span class="line">            <span class="keyword">return</span> *(<span class="type">float</span>*)&amp;sign;</span><br><span class="line">        }</span><br><span class="line">        <span class="comment">// NaN</span></span><br><span class="line">        sign |= (<span class="number">0x7F800000</span> | fraction &lt;&lt; <span class="number">13</span>);</span><br><span class="line">        <span class="keyword">return</span> *(<span class="type">float</span>*)&amp;sign;</span><br><span class="line">    }</span><br><span class="line">    exponent = exponent - <span class="number">15</span> + <span class="number">127</span>;</span><br><span class="line">    fraction &lt;&lt;= <span class="number">13</span>;</span><br><span class="line">    sign |= (exponent &lt;&lt; <span class="number">23</span> | fraction);</span><br><span class="line">    <span class="keyword">return</span> *(<span class="type">float</span>*)&amp;sign;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">    _Float16 val16 = <span class="number">2</span>;</span><br><span class="line">    <span class="type">float</span> val32 = convert_Float16_to_float(val16);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%f\n"</span>, val32);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="关于c语言强制类型转换的思考">关于C语言强制类型转换的思考</h2>
+<p>C语言的强制类型转换在两方面存在差异：整型之间的转化、整型和浮点数之间的转换</p>
+<h3 id="有符号整数无符号整数的转换">有符号整数/无符号整数的转换</h3>
+<p>在整型有无符号的转换之间，编译器并不会改变变量的底层编码，仅改变编码的解读方式</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span> {</span><br><span class="line">  <span class="type">int</span> x = <span class="number">-1</span>;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"unsigned x = %u, signed x = %d\n"</span>, (<span class="type">unsigned</span>)x, x);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>输出<code>unsigned x = 4294967295, signed x = -1</code>，这两个数底层编码相同。但情况在浮点数/整数之间不同</p>
+<h3 id="整型浮点数的转换">整型/浮点数的转换</h3>
+<p>如果将整数/浮点数之间相互转换，C语言编译器会改变相应变量的底层编码，即<strong>补码</strong>和<strong>IEEE754浮点数</strong>两种编码方式之间的转换。同时需要注意的是C语言中<strong>不支持浮点数位运算</strong>，因此在上述示例代码中我采用指针的强制类型转换形式来保留编码格式</p>
 
     </div>
 
@@ -271,8 +293,7 @@ JSP技术实现的关键在于<strong>内嵌于网络服务器</strong>的JSP引
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
-              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+              <a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 计算机系统基础</a>
           </div>
 
         
@@ -281,13 +302,10 @@ JSP技术实现的关键在于<strong>内嵌于网络服务器</strong>的JSP引
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/07/03/SQL/" rel="prev" title="SQL">
-      <i class="fa fa-chevron-left"></i> SQL
+    <a href="/2024/07/04/Servlet/" rel="prev" title="Servlet">
+      <i class="fa fa-chevron-left"></i> Servlet
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/07/04/Servlet/" rel="next" title="Servlet">
-      Servlet <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -346,7 +364,7 @@ JSP技术实现的关键在于<strong>内嵌于网络服务器</strong>的JSP引
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">JSP简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">基础语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp%E6%8C%87%E4%BB%A4"><span class="nav-number">2.1.</span> <span class="nav-text">JSP指令</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ieee754%E6%B5%AE%E7%82%B9%E6%95%B0%E8%A7%84%E8%8C%83%E5%A4%8D%E4%B9%A0"><span class="nav-number">1.</span> <span class="nav-text">IEEE754浮点数规范复习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E8%BD%AC%E6%8D%A2%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.</span> <span class="nav-text">C语言转换实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8Ec%E8%AF%AD%E8%A8%80%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E7%9A%84%E6%80%9D%E8%80%83"><span class="nav-number">3.</span> <span class="nav-text">关于C语言强制类型转换的思考</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B4%E6%95%B0%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.1.</span> <span class="nav-text">有符号整数&#x2F;无符号整数的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E6%B5%AE%E7%82%B9%E6%95%B0%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">整型&#x2F;浮点数的转换</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
