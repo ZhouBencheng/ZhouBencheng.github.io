@@ -20,30 +20,39 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Share my thoughts with you">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Benson&#39;s blog">
-<meta property="og:url" content="http://www.zhoubencheng.com/page/3/index.html">
+  <meta name="description" content="1. 常用CUDA关键字 函数修饰词  __global__：修饰的函数只能返回void类型，并且函数在CPU端调用，在GPU端执行 __device__：在GPU端调用并执行 __host__：在CPU端调用并执行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cuda编程">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/08/16/cuda%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="Share my thoughts with you">
+<meta property="og:description" content="1. 常用CUDA关键字 函数修饰词  __global__：修饰的函数只能返回void类型，并且函数在CPU端调用，在GPU端执行 __device__：在GPU端调用并执行 __host__：在CPU端调用并执行">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://www.uml.org.cn/embeded/images/2018082024.jpg">
+<meta property="og:image" content="https://ashburnlee.github.io/2020/02/20/CUDA-%E4%BE%8B-%E8%A7%84%E7%BA%A6/reduction0.png">
+<meta property="og:image" content="https://ashburnlee.github.io/2020/02/20/CUDA-%E4%BE%8B-%E8%A7%84%E7%BA%A6/reduction1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/blog_migrate/d461ea452d97a49324f58c60c1965dc7.png">
+<meta property="article:published_time" content="2024-08-16T12:12:07.000Z">
+<meta property="article:modified_time" content="2024-08-19T20:13:42.196Z">
 <meta property="article:author" content="Benson">
+<meta property="article:tag" content="高性能计算">
+<meta property="article:tag" content="cuda">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://www.uml.org.cn/embeded/images/2018082024.jpg">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/page/3/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/08/16/cuda%E7%BC%96%E7%A8%8B/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Benson's blog - 最好的安排</title>
+  <title>cuda编程 | Benson's blog</title>
   
 
 
@@ -156,13 +165,14 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/02/MyBatis/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/08/16/cuda%E7%BC%96%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -174,10 +184,9 @@
       <meta itemprop="name" content="Benson's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/02/MyBatis/" class="post-title-link" itemprop="url">MyBatis</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          cuda编程
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -186,14 +195,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-07-02 23:35:17" itemprop="dateCreated datePublished" datetime="2024-07-02T23:35:17+08:00">2024-07-02</time>
+              <time title="创建时间：2024-08-16 20:12:07" itemprop="dateCreated datePublished" datetime="2024-08-16T20:12:07+08:00">2024-08-16</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-05 15:09:16" itemprop="dateModified" datetime="2024-07-05T15:09:16+08:00">2024-07-05</time>
+                <time title="修改时间：2024-08-20 04:13:42" itemprop="dateModified" datetime="2024-08-20T04:13:42+08:00">2024-08-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -201,11 +210,18 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
+                  <a href="/categories/%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">高性能计算</span></a>
                 </span>
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -216,215 +232,88 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <blockquote>
-<p>MyBatis简介：MyBatis是支持定制化SQL、存储过程以及<strong>高级映射</strong>的持久层框架，该框架几乎避开了所有JDBC代码。Mybatis可以对其自身配置和原生Map映射使用xml注解，并且可以将java中的<strong>接口</strong>和<strong>POJOs</strong>（Plain
-Old Java Object）映射为<strong>数据库中的记录</strong></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/02/MyBatis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">电子技术实习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-29 16:26:53" itemprop="dateCreated datePublished" datetime="2024-06-29T16:26:53+08:00">2024-06-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-05 15:05:03" itemprop="dateModified" datetime="2024-07-05T15:05:03+08:00">2024-07-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="树莓派硬件结构">树莓派硬件结构</h2>
-<h3 id="树莓派4b硬件结构">树莓派4B硬件结构</h3>
-<p><img src="https://i.postimg.cc/MTNKBtwD/4B.png" style="zoom:80%;"></p>
+        <h2 id="常用cuda关键字">1. 常用CUDA关键字</h2>
+<h3 id="函数修饰词">函数修饰词</h3>
 <ul>
-<li>DSI(Display serial
-interface)<strong>视频信号</strong>传输接口，将视频信号从处理器传输到显示器的一种高速<strong>串行</strong>接口</li>
-<li>POE(Power Over
-Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据和电力的技术，这种技术使得网络设备如AP、IP摄像头等无需单独的电源线，只需要通过以太网电网缆线就能获得电力供应</li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+<li><code>__global__</code>：修饰的函数只能返回<code>void</code>类型，并且函数在CPU端调用，在GPU端执行</li>
+<li><code>__device__</code>：在GPU端调用并执行</li>
+<li><code>__host__</code>：在CPU端调用并执行</li>
+</ul>
+<span id="more"></span>
+<h3 id="变量修饰词">变量修饰词</h3>
+<ul>
+<li><code>__global__</code>：修饰的变量将存储在GPU的全局内存区域，Nvidia
+GPU内存模型详见下部分</li>
+<li><code>__shared__</code>：修饰的变量将存储在线程块的共享内存区域</li>
+</ul>
+<h3 id="内置变量">内置变量</h3>
+<ul>
+<li><p><code>dim3</code>：cuda内置的结构体类型，其成员变量包含<strong>三个</strong><code>unsigned int</code>，用于描述三维向量上三个维度的大小，使用时</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dim3 <span class="title function_">grid_dim</span><span class="params">(num1, num2, num3)</span>;</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h2 id="cuda内存模型">2. CUDA内存模型</h2>
+<p>CUDA代码运行的GPU中，其<strong>线程模型</strong>可以分为以下几个层次，由上及下依次为从小到大的包含关系</p>
+<ul>
+<li><code>threads</code>：GPU执行指令的基本单位，其布局在线程块<code>block</code>中用<code>dim3</code>类型的<code>block_dim</code>描述</li>
+<li><code>block</code>：线程块，用于容纳若干线程（线程布局在调用<code>__global__</code>函数时，在<code>&lt;&lt;&lt; , &gt;&gt;&gt;</code>中定义），其在网格<code>grid</code>中的布局用<code>dim3</code>类型的<code>grid_dim</code>描述</li>
+<li><code>grid</code>：网格，用于容纳若干线程块，同样在调用<code>__global__</code>函数时在<code>&lt;&lt;&lt; , &gt;&gt;&gt;</code>中定义</li>
+</ul>
+<p>而cuda代码运行的内存模型有以下几类</p>
+<ul>
+<li><code>registers</code>：线程专有，为不带修饰词的变量使用</li>
+<li><code>local memory</code>：局部内存，和寄存器一样为线程专有</li>
+<li><code>shared memory</code>：每个线程块<code>block</code>专有的共享内存，线程块内所有的线程共享这片内存</li>
+<li><code>global memory</code>：每个<code>grid</code>都有自己的全局内存，为每个<code>block</code>的所有<code>thread</code>共有</li>
+<li><code>constant memory</code>：常量内存，为<code>grid</code>所有，只读</li>
+<li><code>texture memory</code>：纹理内存，为<code>grid</code>所有，只读。是cuda主要针对2D数据访问优化的全局聂村区域</li>
+</ul>
+<p><img src="http://www.uml.org.cn/embeded/images/2018082024.jpg"></p>
+<h2 id="规约算法">3. 规约算法</h2>
+<p>规约，是指对输入的N个元素进行满足<strong>结合律</strong>的运算，其特点是各元素之间的结合计算顺序不影响最终计算结果</p>
+<h3 id="交叉规约">交叉规约</h3>
+<p>以线程束(warp)为2的情况为例，这种并行规约方法会导致线程束发散(warp
+deconvergence)。因为线程束是一组在同一时间步中执行相同步骤的线程，所以不同的线程经过<strong>条件分支</strong>执行不同的指令会导致线程束发散，导致执行效率变低</p>
+<p><img src="https://ashburnlee.github.io/2020/02/20/CUDA-%E4%BE%8B-%E8%A7%84%E7%BA%A6/reduction0.png"></p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">__global__ <span class="title function_">func</span><span class="params">()</span> {</span><br><span class="line">	__shared__ <span class="type">float</span> smem[];</span><br><span class="line">  <span class="comment">// 将数据存储在共享内存中</span></span><br><span class="line">  </span><br><span class="line">  <span class="type">int</span> x = threadidx.x; <span class="comment">//只有一个block就直接取threadidx.x</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> step = <span class="number">1</span>; step &lt; blockDim.x; step *= <span class="number">2</span>) {</span><br><span class="line">    <span class="keyword">if</span> (x % (step*<span class="number">2</span>) == <span class="number">0</span>)</span><br><span class="line">      smem[x] += smem[x + step];</span><br><span class="line">    <span class="comment">// 一层中求和结束后才能进行下一层运算</span></span><br><span class="line">  	__syncthreads();</span><br><span class="line">  } </span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h3 id="交错规约">交错规约</h3>
+<p>该规约方法满足warp运行的特性，当橙色框中存在某一个warp中的所有线程都没有任务时，就可以整体释放资源。当<code>warp=2</code>，该图中所有并行运算都能够提前释放资源</p>
+<p><img src="https://ashburnlee.github.io/2020/02/20/CUDA-%E4%BE%8B-%E8%A7%84%E7%BA%A6/reduction1.png"></p>
+<h3 id="shuffle-warp规约"><code>shuffle warp</code>规约</h3>
+<p>cuda存在内置<code>warp函数</code>，该函数中warp中的线程之间可以高效的交换数据（不使用共享内存，直接通过寄存器）</p>
+<figure class="highlight c"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">val += __shfl_down_sync(mask, val, offset, warpSize);</span><br></pre></td></tr></tbody></table></figure>
+<p><code>__shfl_up_sync</code>函数参数和<code>__shfl_down_sync</code>相同，但它是将数据从低索引向高索引的元素上传递</p>
+<p><img src="https://i-blog.csdnimg.cn/blog_migrate/d461ea452d97a49324f58c60c1965dc7.png"></p>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/04/24/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/04/24/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">数值积分方法</a>
-        </h2>
+          <div class="post-tags">
+              <a href="/tags/%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 高性能计算</a>
+              <a href="/tags/cuda/" rel="tag"><i class="fa fa-tag"></i> cuda</a>
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-04-24 00:07:34" itemprop="dateCreated datePublished" datetime="2024-04-24T00:07:34+08:00">2024-04-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-05 15:08:41" itemprop="dateModified" datetime="2024-07-05T15:08:41+08:00">2024-07-05</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="数值微分">数值微分</h2>
-<blockquote>
-<p>为了能够通过有限的离散已知点，推算一个函数在某一点处的导数值，这类问题称为数值微分</p>
-</blockquote>
-<h3 id="用插值构造数值微分公式">用插值构造数值微分公式</h3>
-<blockquote>
-<p>为了能够得到任意点的导数值，我们一般先用插值多项式<span class="math inline">\(p_n(x)\)</span>拟合目标函数<span class="math inline">\(f(x)\)</span>，再根据插值多项式求导来求导数值</p>
-</blockquote>
-<h4 id="插值构造微分的余项">插值构造微分的余项</h4>
-<p><img src="https://i.postimg.cc/28FrjC1T/calculate.png" style="zoom: 50%;"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/04/24/%E6%95%B0%E5%80%BC%E7%A7%AF%E5%88%86%E6%96%B9%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/06/RISCV%E5%90%91%E9%87%8F%E6%89%A9%E5%B1%95/" rel="prev" title="RISCV向量扩展">
+      <i class="fa fa-chevron-left"></i> RISCV向量扩展
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -476,6 +365,7 @@ Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8cuda%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.</span> <span class="nav-text">1. 常用CUDA关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E4%BF%AE%E9%A5%B0%E8%AF%8D"><span class="nav-number">1.1.</span> <span class="nav-text">函数修饰词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E4%BF%AE%E9%A5%B0%E8%AF%8D"><span class="nav-number">1.2.</span> <span class="nav-text">变量修饰词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AE%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">内置变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cuda%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">2. CUDA内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E7%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">3. 规约算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E8%A7%84%E7%BA%A6"><span class="nav-number">3.1.</span> <span class="nav-text">交叉规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E9%94%99%E8%A7%84%E7%BA%A6"><span class="nav-number">3.2.</span> <span class="nav-text">交错规约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#shuffle-warp%E8%A7%84%E7%BA%A6"><span class="nav-number">3.3.</span> <span class="nav-text">shuffle warp规约</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -636,59 +526,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 

@@ -20,17 +20,21 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Share my thoughts with you">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Benson&#39;s blog">
-<meta property="og:url" content="http://www.zhoubencheng.com/archives/2023/11/index.html">
+  <meta name="description" content="Professional Shortcut  ELEN: Element width，表示向量中一个元素的位宽 VLEN: 单个向量寄存器的位宽 VL: 当前操作的向量长度（向量中有几个元素） LMUL: vector length multiplier 向量寄存器组，用于将多个向量寄存器合并使用 SEW: selected element width  寄存器 在V向量扩展中，ISA总共定义了3">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RISCV向量扩展">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/08/06/RISCV%E5%90%91%E9%87%8F%E6%89%A9%E5%B1%95/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="Share my thoughts with you">
+<meta property="og:description" content="Professional Shortcut  ELEN: Element width，表示向量中一个元素的位宽 VLEN: 单个向量寄存器的位宽 VL: 当前操作的向量长度（向量中有几个元素） LMUL: vector length multiplier 向量寄存器组，用于将多个向量寄存器合并使用 SEW: selected element width  寄存器 在V向量扩展中，ISA总共定义了3">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-06T05:34:46.000Z">
+<meta property="article:modified_time" content="2024-08-15T09:03:31.694Z">
 <meta property="article:author" content="Benson">
+<meta property="article:tag" content="RISCV">
+<meta property="article:tag" content="并行计算">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/archives/2023/11/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/08/06/RISCV%E5%90%91%E9%87%8F%E6%89%A9%E5%B1%95/">
 
 
 <script id="page-configurations">
@@ -38,12 +42,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Benson's blog</title>
+  <title>RISCV向量扩展 | Benson's blog</title>
   
 
 
@@ -156,50 +160,160 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 12 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/08/06/RISCV%E5%90%91%E9%87%8F%E6%89%A9%E5%B1%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/ME.ico">
+      <meta itemprop="name" content="Benson">
+      <meta itemprop="description" content="Share my thoughts with you">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Benson's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          RISCV向量扩展
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-08-06 13:34:46" itemprop="dateCreated datePublished" datetime="2024-08-06T13:34:46+08:00">2024-08-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-08-15 17:03:31" itemprop="dateModified" datetime="2024-08-15T17:03:31+08:00">2024-08-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/System/" itemprop="url" rel="index"><span itemprop="name">System</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2023</span>
+        <h2 id="professional-shortcut">Professional Shortcut</h2>
+<ul>
+<li><code>ELEN</code>: Element width，表示向量中一个元素的位宽</li>
+<li><code>VLEN</code>: 单个向量寄存器的位宽</li>
+<li><code>VL</code>: 当前操作的向量长度（向量中有几个元素）</li>
+<li><code>LMUL</code>: vector length multiplier
+向量寄存器组，用于将多个向量寄存器合并使用</li>
+<li><code>SEW</code>: selected element width</li>
+</ul>
+<h2 id="寄存器">寄存器</h2>
+<p>在V向量扩展中，ISA总共定义了<strong>32个通用向量寄存器</strong>和<strong>7个CSR向量寄存器</strong></p>
+<table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 85%">
+</colgroup>
+<thead>
+<tr>
+<th>寄存器名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vstart</td>
+<td>向量起始地址</td>
+</tr>
+<tr>
+<td>vxstat</td>
+<td>定点数饱和标志</td>
+</tr>
+<tr>
+<td>vxrm</td>
+<td>定点数舍入模式</td>
+</tr>
+<tr>
+<td>vcsr</td>
+<td>向量控制和状态寄存器</td>
+</tr>
+<tr>
+<td>vl</td>
+<td>向量长度，每次向量操作前，都需要程序显式设置vl来确定当前向量操作的长度，对应指令<code>vset{i}vl{i}</code></td>
+</tr>
+<tr>
+<td>vtype</td>
+<td>向量数据类型</td>
+</tr>
+<tr>
+<td>vlenb</td>
+<td>向量寄存器字节宽度(VLEN / 8)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="指令">指令</h2>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2023-11-27T19:03:51+08:00"
-              content="2023-11-27">
-          11-27
-        </time>
-      </div>
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/RISCV/" rel="tag"><i class="fa fa-tag"></i> RISCV</a>
+              <a href="/tags/%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 并行计算</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/" itemprop="url">
-            <span itemprop="name">群论复习</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/05/%E5%8D%8A%E7%B2%BE%E5%BA%A6-%E5%8D%95%E7%B2%BE%E5%BA%A6%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BD%AC%E5%8C%96/" rel="prev" title="半精度/单精度浮点数转化">
+      <i class="fa fa-chevron-left"></i> 半精度/单精度浮点数转化
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/08/16/cuda%E7%BC%96%E7%A8%8B/" rel="next" title="cuda编程">
+      cuda编程 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
   </article>
-
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -252,6 +366,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#professional-shortcut"><span class="nav-number">1.</span> <span class="nav-text">Professional Shortcut</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8"><span class="nav-number">2.</span> <span class="nav-text">寄存器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E4%BB%A4"><span class="nav-number">3.</span> <span class="nav-text">指令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

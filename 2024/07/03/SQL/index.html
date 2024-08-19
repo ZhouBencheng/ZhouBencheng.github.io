@@ -20,21 +20,19 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="FKU USTB&#39;s little semester, haha😅  SQL语句 参考教程：廖雪峰老师的SQL教程 数据类型         名称 类型 备注     INT 整型 4bit   BIGINT 长整型 8bit   REAL 单精度浮点型 4bit   DOUBLE 双精度浮点型 8bit   DECIMAL(M, N) 高精度小数 M表示总共位数，N表示小数点位数   CHA">
+  <meta name="description" content="SQL语句 参考教程：廖雪峰老师的SQL教程 数据类型         名称 类型 备注     INT 整型 4bit   BIGINT 长整型 8bit   REAL 单精度浮点型 4bit   DOUBLE 双精度浮点型 8bit   DECIMAL(M, N) 高精度小数 M表示总共位数，N表示小数点位数   CHAR(N) 定长字符串 N个字符的字符串，插入不满足N个的字符串用空格填充">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL">
 <meta property="og:url" content="http://www.zhoubencheng.com/2024/07/03/SQL/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="FKU USTB&#39;s little semester, haha😅  SQL语句 参考教程：廖雪峰老师的SQL教程 数据类型         名称 类型 备注     INT 整型 4bit   BIGINT 长整型 8bit   REAL 单精度浮点型 4bit   DOUBLE 双精度浮点型 8bit   DECIMAL(M, N) 高精度小数 M表示总共位数，N表示小数点位数   CHA">
+<meta property="og:description" content="SQL语句 参考教程：廖雪峰老师的SQL教程 数据类型         名称 类型 备注     INT 整型 4bit   BIGINT 长整型 8bit   REAL 单精度浮点型 4bit   DOUBLE 双精度浮点型 8bit   DECIMAL(M, N) 高精度小数 M表示总共位数，N表示小数点位数   CHAR(N) 定长字符串 N个字符的字符串，插入不满足N个的字符串用空格填充">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
 <meta property="article:published_time" content="2024-07-02T19:28:58.000Z">
-<meta property="article:modified_time" content="2024-07-03T13:47:04.372Z">
+<meta property="article:modified_time" content="2024-08-18T13:55:03.685Z">
 <meta property="article:author" content="Benson">
 <meta property="article:tag" content="数据库">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8">
 
 <link rel="canonical" href="http://www.zhoubencheng.com/2024/07/03/SQL/">
 
@@ -191,10 +189,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-07-03 03:28:58 / 修改时间：21:47:04" itemprop="dateCreated datePublished" datetime="2024-07-03T03:28:58+08:00">2024-07-03</time>
+              <time title="创建时间：2024-07-03 03:28:58" itemprop="dateCreated datePublished" datetime="2024-07-03T03:28:58+08:00">2024-07-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-08-18 21:55:03" itemprop="dateModified" datetime="2024-08-18T21:55:03+08:00">2024-08-18</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -223,10 +227,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <blockquote>
-<p>FKU USTB's little semester, haha<span class="github-emoji"><span>😅</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f605.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-</blockquote>
-<h2 id="sql语句">SQL语句</h2>
+        <h2 id="sql语句">SQL语句</h2>
 <p><strong>参考教程</strong>：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1177760294764384">廖雪峰老师的SQL教程</a></p>
 <h3 id="数据类型">数据类型</h3>
 <table>
@@ -236,64 +237,64 @@
 <col style="width: 63%">
 </colgroup>
 <thead>
-<tr class="header">
+<tr>
 <th>名称</th>
 <th>类型</th>
 <th>备注</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>INT</td>
 <td>整型</td>
 <td>4bit</td>
 </tr>
-<tr class="even">
+<tr>
 <td>BIGINT</td>
 <td>长整型</td>
 <td>8bit</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>REAL</td>
 <td>单精度浮点型</td>
 <td>4bit</td>
 </tr>
-<tr class="even">
+<tr>
 <td>DOUBLE</td>
 <td>双精度浮点型</td>
 <td>8bit</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DECIMAL(M, N)</td>
 <td>高精度小数</td>
 <td>M表示总共位数，N表示小数点位数</td>
 </tr>
-<tr class="even">
+<tr>
 <td>CHAR(N)</td>
 <td>定长字符串</td>
 <td>N个字符的字符串，插入不满足N个的字符串用空格填充</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>VARCHAR(N)</td>
 <td>变长字符串</td>
 <td>0~N个字符的字符串</td>
 </tr>
-<tr class="even">
+<tr>
 <td>BOOLEAN</td>
 <td>布尔类型</td>
 <td>True or False</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DATE</td>
 <td>日期类型</td>
 <td></td>
 </tr>
-<tr class="even">
+<tr>
 <td>TIME</td>
 <td>时间类型</td>
 <td></td>
 </tr>
-<tr class="odd">
+<tr>
 <td>DATETIME</td>
 <td>日期 + 时间类型</td>
 <td></td>
@@ -344,25 +345,25 @@ N行记录，造成结果集非常巨大，需要谨慎使用</p></li>
 <p>使用<code>COUNT()</code>函数统计<code>table1</code>中有几行，注意输出结果时一行一列的<code>COUNT(*)</code>结果集，其中指定输出结果集即二维列表名称<code>&lt;OUTName&gt;</code>，以下是其他常用的聚合函数</p>
 <table>
 <thead>
-<tr class="header">
+<tr>
 <th>函数</th>
 <th>说明</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
+<tr>
 <td>SUM()</td>
 <td>计算某一列的和值，该列必须为数值类型</td>
 </tr>
-<tr class="even">
+<tr>
 <td>AVG()</td>
 <td>计算某一列的平均值，该列必须为数值类型</td>
 </tr>
-<tr class="odd">
+<tr>
 <td>MAX()</td>
 <td>计算某一列的最大值</td>
 </tr>
-<tr class="even">
+<tr>
 <td>MIN()</td>
 <td>计算某一列的最小值</td>
 </tr>
@@ -501,20 +502,20 @@ N行记录，造成结果集非常巨大，需要谨慎使用</p></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">12</span>
+        <span class="site-state-item-count">16</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
