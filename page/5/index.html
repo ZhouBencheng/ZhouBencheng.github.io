@@ -23,14 +23,14 @@
   <meta name="description" content="Share my thoughts with you">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Benson&#39;s blog">
-<meta property="og:url" content="http://www.zhoubencheng.com/page/3/index.html">
+<meta property="og:url" content="http://www.zhoubencheng.com/page/5/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
 <meta property="og:description" content="Share my thoughts with you">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:author" content="Benson">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/page/3/">
+<link rel="canonical" href="http://www.zhoubencheng.com/page/5/">
 
 
 <script id="page-configurations">
@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/03/SQL/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -176,7 +176,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/07/03/SQL/" class="post-title-link" itemprop="url">SQL</a>
+            <a href="/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/" class="post-title-link" itemprop="url">群论复习</a>
         </h2>
 
         <div class="post-meta">
@@ -186,253 +186,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-07-03 03:28:58" itemprop="dateCreated datePublished" datetime="2024-07-03T03:28:58+08:00">2024-07-03</time>
+              <time title="创建时间：2023-11-27 19:03:51" itemprop="dateCreated datePublished" datetime="2023-11-27T19:03:51+08:00">2023-11-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-08-21 22:53:26" itemprop="dateModified" datetime="2024-08-21T22:53:26+08:00">2024-08-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DBMS/" itemprop="url" rel="index"><span itemprop="name">DBMS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="sql语句">SQL语句</h2>
-<p><strong>参考教程</strong>：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/1177760294764384">廖雪峰老师的SQL教程</a></p>
-<h3 id="数据类型">数据类型</h3>
-<table>
-<colgroup>
-<col style="width: 17%">
-<col style="width: 19%">
-<col style="width: 63%">
-</colgroup>
-<thead>
-<tr>
-<th>名称</th>
-<th>类型</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>INT</td>
-<td>整型</td>
-<td>4bit</td>
-</tr>
-<tr>
-<td>BIGINT</td>
-<td>长整型</td>
-<td>8bit</td>
-</tr>
-<tr>
-<td>REAL</td>
-<td>单精度浮点型</td>
-<td>4bit</td>
-</tr>
-<tr>
-<td>DOUBLE</td>
-<td>双精度浮点型</td>
-<td>8bit</td>
-</tr>
-<tr>
-<td>DECIMAL(M, N)</td>
-<td>高精度小数</td>
-<td>M表示总共位数，N表示小数点位数</td>
-</tr>
-<tr>
-<td>CHAR(N)</td>
-<td>定长字符串</td>
-<td>N个字符的字符串，插入不满足N个的字符串用空格填充</td>
-</tr>
-<tr>
-<td>VARCHAR(N)</td>
-<td>变长字符串</td>
-<td>0~N个字符的字符串</td>
-</tr>
-<tr>
-<td>BOOLEAN</td>
-<td>布尔类型</td>
-<td>True or False</td>
-</tr>
-<tr>
-<td>DATE</td>
-<td>日期类型</td>
-<td></td>
-</tr>
-<tr>
-<td>TIME</td>
-<td>时间类型</td>
-<td></td>
-</tr>
-<tr>
-<td>DATETIME</td>
-<td>日期 + 时间类型</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>可以使用<code>NOT NULL</code>修饰一个字段类型，表示该字段<strong>不能为空</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/03/SQL/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/07/02/MyBatis/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/07/02/MyBatis/" class="post-title-link" itemprop="url">MyBatis</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-07-02 23:35:17" itemprop="dateCreated datePublished" datetime="2024-07-02T23:35:17+08:00">2024-07-02</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-08-21 22:53:08" itemprop="dateModified" datetime="2024-08-21T22:53:08+08:00">2024-08-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JavaWeb/" itemprop="url" rel="index"><span itemprop="name">JavaWeb</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <blockquote>
-<p>MyBatis简介：MyBatis是支持定制化SQL、存储过程以及<strong>高级映射</strong>的持久层框架，该框架几乎避开了所有JDBC代码。Mybatis可以对其自身配置和原生Map映射使用xml注解，并且可以将java中的<strong>接口</strong>和<strong>POJOs</strong>（Plain
-Old Java Object）映射为<strong>数据库中的记录</strong></p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/07/02/MyBatis/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/" class="post-title-link" itemprop="url">电子技术实习</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-06-29 16:26:53" itemprop="dateCreated datePublished" datetime="2024-06-29T16:26:53+08:00">2024-06-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-05 15:05:03" itemprop="dateModified" datetime="2024-07-05T15:05:03+08:00">2024-07-05</time>
+                <time title="修改时间：2024-07-03 22:22:38" itemprop="dateModified" datetime="2024-07-03T22:22:38+08:00">2024-07-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -455,17 +216,33 @@ Old Java Object）映射为<strong>数据库中的记录</strong></p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="树莓派硬件结构">树莓派硬件结构</h2>
-<h3 id="树莓派4b硬件结构">树莓派4B硬件结构</h3>
-<p><img src="https://i.postimg.cc/MTNKBtwD/4B.png" style="zoom:80%;"></p>
-<ul>
-<li>DSI(Display serial
-interface)<strong>视频信号</strong>传输接口，将视频信号从处理器传输到显示器的一种高速<strong>串行</strong>接口</li>
-<li>POE(Power Over
-Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据和电力的技术，这种技术使得网络设备如AP、IP摄像头等无需单独的电源线，只需要通过以太网电网缆线就能获得电力供应</li></ul>
+          <h2 id="代数系统">代数系统</h2>
+<blockquote>
+<p>代数系统主要由两部分组成：1. 元素组成的集合 2.
+作用在集合上的二元运算</p>
+<blockquote>
+<p>以下知识梳理将围绕这两个部分进行</p>
+</blockquote>
+</blockquote>
+<pre class="mermaid">flowchart LR
+ques1["判断给定集合和运算是否构成代数系统(封闭性判断)"]
+ques2["判断二元运算性质"]
+ques3["求二元运算性质"]
+atten["两种运算的表达形式1.解析式 2.运算表"]
+ques2 --&gt; atten
+ques3 --&gt; atten
+ques4["子代数判定"]
+ques5["计算积代数"]
+ques6["判读、证明函数是某一类同态"]
+title["本章主要题型"] --&gt; ques1
+title --&gt; ques2
+title --&gt; ques3
+title --&gt; ques4
+title --&gt; ques5
+title --&gt; ques6</pre>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2024/06/29/%E7%94%B5%E5%AD%90%E6%8A%80%E6%9C%AF%E5%AE%9E%E4%B9%A0%EF%BC%88%E8%80%83%E5%89%8D%E9%A2%84%E4%B9%A0%E7%89%88%EF%BC%89/#more" rel="contents">
+              <a class="btn" href="/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -488,7 +265,7 @@ Ethernet)以太网供电，是一种在同一根以太网电缆上传输数据�
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/4/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span>
   </nav>
 
 
@@ -701,6 +478,59 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
