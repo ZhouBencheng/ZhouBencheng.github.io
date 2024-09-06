@@ -20,30 +20,35 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Share my thoughts with you">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Benson&#39;s blog">
-<meta property="og:url" content="http://www.zhoubencheng.com/index.html">
+  <meta name="description" content="Overview Github Action是持续集成&#x2F;交付(CI&#x2F;CD)的平台，允许开发者自动化构建、测试、部署项目。Github Action不仅仅是DevOps，还允许在远程仓库发生其他事件时运行工作流程。Github Action提供Ubuntu，同时也允许开发者使用自己的数据中心服务器或云服务器来自托管运行器 Workflow 在Github Action中使用yaml文件进行配置，该配">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Github_Action">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/09/02/Github-Action/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="Share my thoughts with you">
+<meta property="og:description" content="Overview Github Action是持续集成&#x2F;交付(CI&#x2F;CD)的平台，允许开发者自动化构建、测试、部署项目。Github Action不仅仅是DevOps，还允许在远程仓库发生其他事件时运行工作流程。Github Action提供Ubuntu，同时也允许开发者使用自己的数据中心服务器或云服务器来自托管运行器 Workflow 在Github Action中使用yaml文件进行配置，该配">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-09-02T07:47:29.000Z">
+<meta property="article:modified_time" content="2024-09-04T07:29:46.569Z">
 <meta property="article:author" content="Benson">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="git">
+<meta property="article:tag" content="yaml">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/09/02/Github-Action/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Benson's blog - 最好的安排</title>
+  <title>Github_Action | Benson's blog</title>
   
 
 
@@ -156,9 +161,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -174,10 +180,9 @@
       <meta itemprop="name" content="Benson's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/09/02/Github-Action/" class="post-title-link" itemprop="url">Github_Action</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          Github_Action
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -206,6 +211,13 @@
             </span>
 
           
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
 
         </div>
       </header>
@@ -216,7 +228,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="overview">Overview</h2>
+        <h2 id="overview">Overview</h2>
 <p>Github
 Action是持续集成/交付(CI/CD)的平台，允许开发者自动化<strong>构建</strong>、<strong>测试</strong>、<strong>部署</strong>项目。Github
 Action不仅仅是<a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/devops/what-is-devops">DevOps</a>，还允许在远程仓库发生其他事件时运行工作流程。Github
@@ -242,193 +254,37 @@ Action脚本中，存在一些Github内置的上下文变量，在工作流执�
 <li><code>concurrency</code>字段用于控制工作流的并发执行，避免同一工作流在同一分支或特定工作流内执行多次。在上述示例中，并发事件按<code>pr_num</code>拉取请求分组，即每个PR都有自己的并发控制，当一个PR中有多个任务出发，则只有最新的被执行</li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/08/21/%E9%87%8F%E5%8C%96%E5%92%8C%E5%8F%8D%E9%87%8F%E5%8C%96-pytorch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/08/21/%E9%87%8F%E5%8C%96%E5%92%8C%E5%8F%8D%E9%87%8F%E5%8C%96-pytorch/" class="post-title-link" itemprop="url">量化和反量化-pytorch</a>
-        </h2>
+          <div class="post-tags">
+              <a href="/tags/github/" rel="tag"><i class="fa fa-tag"></i> github</a>
+              <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+              <a href="/tags/yaml/" rel="tag"><i class="fa fa-tag"></i> yaml</a>
+          </div>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-08-21 22:51:44" itemprop="dateCreated datePublished" datetime="2024-08-21T22:51:44+08:00">2024-08-21</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-08-23 15:51:53" itemprop="dateModified" datetime="2024-08-23T15:51:53+08:00">2024-08-23</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>在大模型推理中，我们通常可以降低<strong>模型权重</strong>和<strong>激活值</strong>的位宽来降低模型的存储空间、提高推理效率，而这样的操作也称为<strong>量化</strong>。通过量化将浮点模型<code>(float32)</code>转化为低比特的定点模型<code>(int8)</code>，使得模型运行的存储压力和计算复杂性都有所降低，从而使模型从GPU端移植到板载系统中运行成为可能</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/08/21/%E9%87%8F%E5%8C%96%E5%92%8C%E5%8F%8D%E9%87%8F%E5%8C%96-pytorch/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/08/16/cuda%E7%BC%96%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/ME.ico">
-      <meta itemprop="name" content="Benson">
-      <meta itemprop="description" content="Share my thoughts with you">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Benson's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/08/16/cuda%E7%BC%96%E7%A8%8B/" class="post-title-link" itemprop="url">cuda编程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2024-08-16 20:12:07" itemprop="dateCreated datePublished" datetime="2024-08-16T20:12:07+08:00">2024-08-16</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-08-20 04:13:42" itemprop="dateModified" datetime="2024-08-20T04:13:42+08:00">2024-08-20</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/" itemprop="url" rel="index"><span itemprop="name">高性能计算</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="常用cuda关键字">1. 常用CUDA关键字</h2>
-<h3 id="函数修饰词">函数修饰词</h3>
-<ul>
-<li><code>__global__</code>：修饰的函数只能返回<code>void</code>类型，并且函数在CPU端调用，在GPU端执行</li>
-<li><code>__device__</code>：在GPU端调用并执行</li>
-<li><code>__host__</code>：在CPU端调用并执行</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/08/16/cuda%E7%BC%96%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/08/21/%E9%87%8F%E5%8C%96%E5%92%8C%E5%8F%8D%E9%87%8F%E5%8C%96-pytorch/" rel="prev" title="量化和反量化-pytorch">
+      <i class="fa fa-chevron-left"></i> 量化和反量化-pytorch
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
-
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
-  </nav>
 
 
 
@@ -480,6 +336,7 @@ Action脚本中，存在一些Github内置的上下文变量，在工作流执�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#overview"><span class="nav-number">1.</span> <span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#workflow"><span class="nav-number">2.</span> <span class="nav-text">Workflow</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -640,59 +497,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
