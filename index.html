@@ -187,7 +187,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2024-09-13 10:47:55 / 修改时间：10:50:21" itemprop="dateCreated datePublished" datetime="2024-09-13T10:47:55+08:00">2024-09-13</time>
+              <time title="创建时间：2024-09-13 10:47:55 / 修改时间：10:53:20" itemprop="dateCreated datePublished" datetime="2024-09-13T10:47:55+08:00">2024-09-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -212,32 +212,14 @@
       
           <h1 id="pytorch的ci集成架构">pytorch的CI集成架构</h1>
 <p>如今在大部分ISA指令集中都存在相应的向量加速扩展，例如x86的SSE，PowerPC的VSX，ARM的NEON以及RISCV的RVV扩展。得益于这些向量加速指令，以及相应架构编译器提供的<code>intrinsic</code>函数，<code>pytorch</code>能够在不同的硬件平台上使用不同的向量扩展指令进行硬件层面的加速</p>
-<h2 id="sleef的ci测试">1. SLEEF的CI测试</h2>
-<p>首先以<code>pytorch</code>调用的第三方仓库<code>SLEEF</code>为例进行CI的简单学习，以<code>SLEEF</code>源代码中的<code>.github/workflow</code>路径下的<a target="_blank" rel="noopener" href="https://github.com/shibatch/sleef/blob/master/.github/workflows/build_and_test.yml"><code>build_and_test.yml</code></a>脚本为例，该脚本在标准的的ubuntu环境中使用不同的<code>qemu-cpu</code>进行测试</p>
-<p>工作流<code>build_and_test</code>的job主要分为以下四个</p>
-<ol type="1">
-<li><p><code>build-native</code>
-该工作主要在github官方提供的<code>x86_64</code>服务器上进行<code>SLEEF</code>源码的构建。其步骤是将<code>SLEEF</code>源代码检出到测试环境中；安装相关依赖；并使用<code>cmake</code>指令构建并编译<code>SLEEF</code>源代码；使用<code>upload-artifact@v3</code>action将相关构建文件和编译文件上传暂存到当前工作流中
-<a target="_blank" rel="noopener" href="https://postimg.cc/ZWwBCLKx"><img src="https://i.postimg.cc/fbNxqHGp/build-native.png" alt="build-native.png"></a></p></li>
-<li><p><code>test-native</code>
-该工作主要是在<code>x86_64</code>平台上进行<code>ctest</code>测试。其步骤是检出代码；安装依赖；下载<code>build-native</code>的编译工件；进行<code>ctest</code>
-测试；将测试结果通过<code>upload-artifact@v3</code>上传到工作流中 <a target="_blank" rel="noopener" href="https://postimg.cc/5jHcX5bq"><img src="https://i.postimg.cc/59gfkprG/Screenshot-from-2024-09-12-15-11-52.png" alt="Screenshot-from-2024-09-12-15-11-52.png"></a></p></li>
-<li><p><code>build-cross</code>
-该工作主要使用<em>矩阵策略</em>，使用<code>qemu-cpu</code>进行不同硬件平台和编译器类型的测试。<code>build-cross</code>的编译构建工作大致和<code>build-native</code>相同，需要注意的是多出的两步<code>Check sysroot cache</code>和<code>Create sysroot</code>，前者使用<code>actions/cache@v3</code>检查本地是否存在<code>sysroot</code>目录缓存可用；若本地不存在可用<code>sysroot</code>缓存，则后者使用<code>debootstrap</code>指令创建新的<code>sysroot</code>环境
-<a target="_blank" rel="noopener" href="https://postimg.cc/XprV0Z2X"><img src="https://i.postimg.cc/vHzDfff7/Screenshot-from-2024-09-12-16-00-57.png" alt="Screenshot-from-2024-09-12-16-00-57.png"></a></p>
-<blockquote>
-<p><code>sysroot</code>是一个用于交叉编译和隔离构建环境的重要概念，其作用是提供一个与目标系统环境相似的<strong>根文件系统</strong>，使得编译器能够找到正确的对应目标架构的库、头文件和依赖项</p>
-</blockquote>
-<p>以下是有关github
-action中矩阵策略的学习，在<code>step</code>中可以使用<code>${{ matrix.arch }}-${{ matrix.compiler }}</code>表示不同的硬件架构和编译器类型组合</p>
-<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">matrix:</span></span><br><span class="line">     <span class="attr">arch:</span> [<span class="string">aarch64</span>, <span class="string">armhf</span>, <span class="string">ppc64el</span>, <span class="string">s390x</span>, <span class="string">riscv64</span>]</span><br><span class="line">     <span class="attr">compiler:</span> [<span class="string">gcc</span>, <span class="string">llvm</span>]</span><br><span class="line">     <span class="attr">include:</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">armhf</span></span><br><span class="line">         <span class="attr">binfmt:</span> <span class="string">arm</span></span><br><span class="line">         <span class="attr">gnupkg:</span> <span class="string">-arm-linux-gnueabihf</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">ppc64el</span></span><br><span class="line">         <span class="attr">binfmt:</span> <span class="string">ppc64le</span></span><br><span class="line">         <span class="attr">gnupkg:</span> <span class="string">-powerpc64le-linux-gnu</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">aarch64</span></span><br><span class="line">         <span class="attr">debarch:</span> <span class="string">arm64</span></span><br><span class="line">     <span class="attr">exclude:</span></span><br><span class="line">       <span class="comment"># Only GCC trunk supports the RISC-V V intrinsics and https://github.com/riscv-collab/riscv-gnu-toolchain</span></span><br><span class="line">       <span class="comment"># doesn't track a recent enough version yet</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">riscv64</span></span><br><span class="line">         <span class="attr">compiler:</span> <span class="string">gcc</span></span><br></pre></td></tr></tbody></table></figure>
-<p>在<code>matrix</code>中，<code>include</code>字段用于扩展或覆盖矩阵的组合，在样例代码中，<code>[armhf, *]</code>的矩阵组合会被添加两个字段，即<code>[armhf, *, arm, -arm-linux-gnueabihf]</code>；同时<code>exclude</code>字段也预示着<code>riscv64</code>不会和<code>gcc</code>进行组合</p></li>
-<li><p><code>test-cross</code>
-该工作内容大致和<code>test-native</code>相同，主要使用<code>build-cross</code>中构建编译的<code>_build/bin/*</code>文件进行<code>ctest</code>测试
-<a target="_blank" rel="noopener" href="https://postimg.cc/gLHX3xZv"><img src="https://i.postimg.cc/J09NVJ7d/Screenshot-from-2024-09-12-16-41-51.png" alt="Screenshot-from-2024-09-12-16-41-51.png"></a></p></li>
-</ol>
-<h2 id="pytorch的ci测试">pytorch的CI测试</h2>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/13/PytorchCI/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -287,7 +269,7 @@ action中矩阵策略的学习，在<code>step</code>中可以使用<code>${{ ma
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-12 18:05:15" itemprop="dateModified" datetime="2024-09-12T18:05:15+08:00">2024-09-12</time>
+                <time title="修改时间：2024-09-13 10:53:35" itemprop="dateModified" datetime="2024-09-13T10:53:35+08:00">2024-09-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -314,71 +296,14 @@ action中矩阵策略的学习，在<code>step</code>中可以使用<code>${{ ma
 <p>本文章记录<a target="_blank" rel="noopener" href="https://15445.courses.cs.cmu.edu/fall2023/">CMU15445
 2023fall</a>课程的实验内容，实验初始源代码<a target="_blank" rel="noopener" href="https://github.com/cmu-db/bustub/archive/refs/tags/v20231227-2023fall.zip">链接</a>，注意不要在github中下载最新的<code>bustub</code>源代码，并采用官方提供的<a target="_blank" rel="noopener" href="https://www.gradescope.com/">Autograde</a>平台进行评测，邀请码KK5DVJ</p>
 </blockquote>
-<h1 id="project0-c-primer">Project0 C++ Primer</h1>
-<p><a target="_blank" rel="noopener" href="https://postimg.cc/WDqW2K4k"><img src="https://i.postimg.cc/BvMdCf9M/2024-09-10-11-23-39.png" alt="2024-09-10-11-23-39.png"></a></p>
-<p>本实验要求为前缀树数据结构完善<code>Get\Put\Remove</code>三种方法，需要注意的是，为了提高前缀树的并发可访问性，我们需要用新的<code>map</code>构建新的节点，以返回新的前缀树<code>Trie</code></p>
-<h2 id="task1-写时复制前缀树">Task1 写时复制前缀树</h2>
-<h3 id="get"><code>Get</code></h3>
-<p>实现<code>Get</code>读取方法需要考虑以下几点</p>
-<ul>
-<li><p>存在以下两种<strong>边缘情况</strong></p>
-<ul>
-<li><p><code>Trie</code>为空(<code>root_=nullptr</code>)，<code>default()</code>构造或<code>Remove</code>删除尽有效值节点</p></li>
-<li><p><code>key</code>字符串为空，直接查找根节点中的值</p></li>
-</ul></li>
-<li><p>遍历节点时，以下两种情况直接返回</p>
-<ul>
-<li>目标<code>key</code>不存在，直接返回<code>nullptr</code></li>
-<li>查找到目标节点，并使用<code>std::dynamic_pointer_cast</code>方法成功转化为<code>TrieNodeWithValue</code>进行值读取，需要注意的是<code>std::dynamic_pointer_cast</code>方法在<strong>运行时</strong>检查类型转换</li>
-</ul></li>
-</ul>
-<h3 id="put"><code>Put</code></h3>
-<p>关于<code>Put</code>和<code>Remove</code>两种写方法，可以采用递归实现，每一层递归用于向子节点插入<code>key</code>字符串的去头子串，关于该递归方法需要考虑以下几点</p>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数签名</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> <span class="title class_">T</span>&gt;</span><br><span class="line"><span class="function"><span class="type">static</span> <span class="keyword">auto</span> <span class="title">RecursivePut</span><span class="params">(<span class="type">const</span> std::shared_ptr&lt;<span class="type">const</span> TrieNode&gt; &amp;node, std::string_view key, T value)</span></span></span><br><span class="line"><span class="function">    -&gt; std::shared_ptr&lt;<span class="type">const</span> TrieNode&gt; </span>{</span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li><p>两种边缘情况</p>
-<ul>
-<li><code>key</code>字符串为空，直接将值插入当前节点，但需要注意继承原先节点的<code>children_</code>子节点映射</li>
-<li><code>key</code>字符串长度为1，考虑两种情况
-<ul>
-<li>该字符已存在对应子节点，需要继承原节点的<code>children_</code>映射并更新<code>value_</code></li>
-<li>该字符不存在对应子节点，则用<code>value_</code>构造新的子节点，并与父节点连接</li>
-</ul></li>
-</ul></li>
-<li><p>递归插入，同样考虑两种情况</p>
-<ul>
-<li><p>当前字符串<code>key</code>的首字符已存在子节点，则需要向递归函数中传入已存在的子节点指针</p></li>
-<li><p>当前字符串首字符不存在子节点，则传入新构造的空子节点指针</p>
-<blockquote>
-<p>此处存在缺陷是，函数传入的空子节点，进入函数体内部后又会被重新<code>Clone()</code>一次，舍弃原先的空节点，造成无用的重复构造</p>
-</blockquote></li>
-</ul></li>
-</ul>
-<h3 id="remove"><code>Remove</code></h3>
-<figure class="highlight c++"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数签名</span></span><br><span class="line"><span class="function"><span class="type">static</span> <span class="keyword">auto</span> <span class="title">RecursiveRemove</span><span class="params">(std::shared_ptr&lt;<span class="type">const</span> TrieNode&gt; node, std::string_view key)</span></span></span><br><span class="line"><span class="function">    -&gt; std::shared_ptr&lt;<span class="type">const</span> TrieNode&gt; </span></span><br></pre></td></tr></tbody></table></figure>
-<ul>
-<li>三种边缘情况
-<ul>
-<li><code>key</code>字符串为空，需要删除根节点中的值</li>
-<li><code>key</code>字符串的首字符不存在，说明待删除的键不存在，直接返回原节点</li>
-<li><code>key</code>字符串长度为1
-<ul>
-<li>该字符对应的节点不存在值，说明该键值对不存在，直接返回原节点</li>
-<li>键值对存在，但是值节点不是叶子节点，需要将值节点降级为内部节点</li>
-<li>键值对存在，且值节点是叶子节点，则需要<code>children_.erase()</code>删除节点</li>
-</ul></li>
-</ul></li>
-<li>递归删除，考虑两种情况
-<ul>
-<li>返回的子节点既不是值节点，<code>children_</code>也为空，则需要摒弃该子节点</li>
-<li>否则，将新的子节点连接到当前节点</li>
-</ul></li>
-</ul>
-<h2 id="task2-并发键值存储">Task2 并发键值存储</h2>
-<p>在前缀树的并发访问中，题目要求读之间兼容、写操作互斥、写操作进行时，读操作能够从旧根中开始。该并发设计最难在于最后一点，但是<code>Task1</code>的正确实现能够满足这一点</p>
-<p><img src="https://15445.courses.cs.cmu.edu/fall2023/project0/trie-02.svg" style="zoom: 25%;"></p>
-<p>如上图所示，当读写操作并行时，只要读操作能够获取原先的旧根指针，就能在<code>Get</code>方法的逻辑中正确读下去，原先逻辑删除的节点仍然物理存在</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/09/11/CMU15445-Project/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
