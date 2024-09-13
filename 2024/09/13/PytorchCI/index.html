@@ -20,24 +20,26 @@
     var CONFIG = {"hostname":"www.zhoubencheng.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="introduction 简单的常微分方程求解问题通式，我们的问题是从这个方程组入手，得到y关于x的函数关系，但是解析解一般难以求解，因此从数值解求法入手 \[ \begin{cases} \frac{dy}{dx} &#x3D; f(x, y) &amp;x \in [a, b]\\ y(a) &#x3D; y_0 \end{cases} \] \(Lipschitz条件: |f(x, y_1) - f(x, y_">
+  <meta name="description" content="pytorch的CI集成架构 如今在大部分ISA指令集中都存在相应的向量加速扩展，例如x86的SSE，PowerPC的VSX，ARM的NEON以及RISCV的RVV扩展。得益于这些向量加速指令，以及相应架构编译器提供的intrinsic函数，pytorch能够在不同的硬件平台上使用不同的向量扩展指令进行硬件层面的加速 1. SLEEF的CI测试 首先以pytorch调用的第三方仓库SLEEF为例进">
 <meta property="og:type" content="article">
-<meta property="og:title" content="常微分方程数值解法">
-<meta property="og:url" content="http://www.zhoubencheng.com/2024/04/20/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/index.html">
+<meta property="og:title" content="PytorchCI">
+<meta property="og:url" content="http://www.zhoubencheng.com/2024/09/13/PytorchCI/index.html">
 <meta property="og:site_name" content="Benson&#39;s blog">
-<meta property="og:description" content="introduction 简单的常微分方程求解问题通式，我们的问题是从这个方程组入手，得到y关于x的函数关系，但是解析解一般难以求解，因此从数值解求法入手 \[ \begin{cases} \frac{dy}{dx} &#x3D; f(x, y) &amp;x \in [a, b]\\ y(a) &#x3D; y_0 \end{cases} \] \(Lipschitz条件: |f(x, y_1) - f(x, y_">
+<meta property="og:description" content="pytorch的CI集成架构 如今在大部分ISA指令集中都存在相应的向量加速扩展，例如x86的SSE，PowerPC的VSX，ARM的NEON以及RISCV的RVV扩展。得益于这些向量加速指令，以及相应架构编译器提供的intrinsic函数，pytorch能够在不同的硬件平台上使用不同的向量扩展指令进行硬件层面的加速 1. SLEEF的CI测试 首先以pytorch调用的第三方仓库SLEEF为例进">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i.postimg.cc/mgLRtKM4/Euler-Method.png">
-<meta property="og:image" content="https://i.postimg.cc/yN5zpdG6/convergence.jpg">
-<meta property="article:published_time" content="2024-04-20T09:15:25.000Z">
-<meta property="article:modified_time" content="2024-07-05T07:07:53.954Z">
+<meta property="og:image" content="https://i.postimg.cc/fbNxqHGp/build-native.png">
+<meta property="og:image" content="https://i.postimg.cc/59gfkprG/Screenshot-from-2024-09-12-15-11-52.png">
+<meta property="og:image" content="https://i.postimg.cc/vHzDfff7/Screenshot-from-2024-09-12-16-00-57.png">
+<meta property="og:image" content="https://i.postimg.cc/J09NVJ7d/Screenshot-from-2024-09-12-16-41-51.png">
+<meta property="article:published_time" content="2024-09-13T02:47:55.000Z">
+<meta property="article:modified_time" content="2024-09-13T02:50:21.692Z">
 <meta property="article:author" content="Benson">
-<meta property="article:tag" content="数值计算">
-<meta property="article:tag" content="高等数学">
+<meta property="article:tag" content="pytorch">
+<meta property="article:tag" content="github">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://i.postimg.cc/mgLRtKM4/Euler-Method.png">
+<meta name="twitter:image" content="https://i.postimg.cc/fbNxqHGp/build-native.png">
 
-<link rel="canonical" href="http://www.zhoubencheng.com/2024/04/20/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/">
+<link rel="canonical" href="http://www.zhoubencheng.com/2024/09/13/PytorchCI/">
 
 
 <script id="page-configurations">
@@ -50,7 +52,7 @@
   };
 </script>
 
-  <title>常微分方程数值解法 | Benson's blog</title>
+  <title>PytorchCI | Benson's blog</title>
   
 
 
@@ -170,7 +172,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/04/20/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/09/13/PytorchCI/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -183,7 +185,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          常微分方程数值解法
+          PytorchCI
         </h1>
 
         <div class="post-meta">
@@ -192,23 +194,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2024-04-20 17:15:25" itemprop="dateCreated datePublished" datetime="2024-04-20T17:15:25+08:00">2024-04-20</time>
+              <time title="创建时间：2024-09-13 10:47:55 / 修改时间：10:50:21" itemprop="dateCreated datePublished" datetime="2024-09-13T10:47:55+08:00">2024-09-13</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-05 15:07:53" itemprop="dateModified" datetime="2024-07-05T15:07:53+08:00">2024-07-05</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/USTB-courses/" itemprop="url" rel="index"><span itemprop="name">USTB courses</span></a>
+                  <a href="/categories/utils/" itemprop="url" rel="index"><span itemprop="name">utils</span></a>
                 </span>
             </span>
 
@@ -230,80 +226,33 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="introduction">introduction</h2>
-<p>简单的常微分方程求解问题通式，我们的问题是从这个方程组入手，得到<code>y</code>关于<code>x</code>的函数关系，但是解析解一般难以求解，因此从数值解求法入手
-<span class="math display">\[
-\begin{cases}
-\frac{dy}{dx} = f(x, y) &amp;x \in [a, b]\\
-y(a) = y_0
-\end{cases}
-\]</span> <span class="math inline">\(Lipschitz条件: |f(x, y_1) - f(x,
-y_2)| \leq L|y_1 - y_0|， x \in [a, b]\)</span>
-当方程组中二元函数关系<code>f</code>满足该条件时，常微分方程有解</p>
-<blockquote>
-<p><code>Lipschitz</code>条件可以理解为：在任意x属于[a.
-b]的闭区间中，<code>f(x. y)</code>的任意一条纵向曲线都是<strong>导数有界</strong></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="euler方法">Euler方法</h2>
-<p>从三个角度理解欧拉方法的公式由来</p>
+        <h1 id="pytorch的ci集成架构">pytorch的CI集成架构</h1>
+<p>如今在大部分ISA指令集中都存在相应的向量加速扩展，例如x86的SSE，PowerPC的VSX，ARM的NEON以及RISCV的RVV扩展。得益于这些向量加速指令，以及相应架构编译器提供的<code>intrinsic</code>函数，<code>pytorch</code>能够在不同的硬件平台上使用不同的向量扩展指令进行硬件层面的加速</p>
+<h2 id="sleef的ci测试">1. SLEEF的CI测试</h2>
+<p>首先以<code>pytorch</code>调用的第三方仓库<code>SLEEF</code>为例进行CI的简单学习，以<code>SLEEF</code>源代码中的<code>.github/workflow</code>路径下的<a target="_blank" rel="noopener" href="https://github.com/shibatch/sleef/blob/master/.github/workflows/build_and_test.yml"><code>build_and_test.yml</code></a>脚本为例，该脚本在标准的的ubuntu环境中使用不同的<code>qemu-cpu</code>进行测试</p>
+<p>工作流<code>build_and_test</code>的job主要分为以下四个</p>
 <ol type="1">
-<li><p>差商近似导数 <span class="math display">\[
-\frac{f(x_{n+1}) - f(x_{n})}{x_{n+1} - x_n} = f(x_n, y_n) \\
-\Rightarrow f(x_{n+1}) = f(x_n) + hf(x_n, y_n)
-\]</span></p></li>
-<li><p>数值积分方法 <span class="math display">\[
-f(x_{n+1}) = f(x_n) + \int_{x_n}^{x_{n+1}}f(x, y)dx \\
-使用积分矩形近似 \Rightarrow f(x_{n+1}) = f(x_n) + hf(x_n, y_n)
-\]</span></p></li>
-<li><p>Taylor展开方法 <span class="math display">\[
-f(x_{n+1}) = f(x_n) + hf(x_n, y_n) \\
-仅使用泰勒展开到一阶导数的程度来近似
-\]</span></p></li>
+<li><p><code>build-native</code>
+该工作主要在github官方提供的<code>x86_64</code>服务器上进行<code>SLEEF</code>源码的构建。其步骤是将<code>SLEEF</code>源代码检出到测试环境中；安装相关依赖；并使用<code>cmake</code>指令构建并编译<code>SLEEF</code>源代码；使用<code>upload-artifact@v3</code>action将相关构建文件和编译文件上传暂存到当前工作流中
+<a target="_blank" rel="noopener" href="https://postimg.cc/ZWwBCLKx"><img src="https://i.postimg.cc/fbNxqHGp/build-native.png" alt="build-native.png"></a></p></li>
+<li><p><code>test-native</code>
+该工作主要是在<code>x86_64</code>平台上进行<code>ctest</code>测试。其步骤是检出代码；安装依赖；下载<code>build-native</code>的编译工件；进行<code>ctest</code>
+测试；将测试结果通过<code>upload-artifact@v3</code>上传到工作流中 <a target="_blank" rel="noopener" href="https://postimg.cc/5jHcX5bq"><img src="https://i.postimg.cc/59gfkprG/Screenshot-from-2024-09-12-15-11-52.png" alt="Screenshot-from-2024-09-12-15-11-52.png"></a></p></li>
+<li><p><code>build-cross</code>
+该工作主要使用<em>矩阵策略</em>，使用<code>qemu-cpu</code>进行不同硬件平台和编译器类型的测试。<code>build-cross</code>的编译构建工作大致和<code>build-native</code>相同，需要注意的是多出的两步<code>Check sysroot cache</code>和<code>Create sysroot</code>，前者使用<code>actions/cache@v3</code>检查本地是否存在<code>sysroot</code>目录缓存可用；若本地不存在可用<code>sysroot</code>缓存，则后者使用<code>debootstrap</code>指令创建新的<code>sysroot</code>环境
+<a target="_blank" rel="noopener" href="https://postimg.cc/XprV0Z2X"><img src="https://i.postimg.cc/vHzDfff7/Screenshot-from-2024-09-12-16-00-57.png" alt="Screenshot-from-2024-09-12-16-00-57.png"></a></p>
+<blockquote>
+<p><code>sysroot</code>是一个用于交叉编译和隔离构建环境的重要概念，其作用是提供一个与目标系统环境相似的<strong>根文件系统</strong>，使得编译器能够找到正确的对应目标架构的库、头文件和依赖项</p>
+</blockquote>
+<p>以下是有关github
+action中矩阵策略的学习，在<code>step</code>中可以使用<code>${{ matrix.arch }}-${{ matrix.compiler }}</code>表示不同的硬件架构和编译器类型组合</p>
+<figure class="highlight yaml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">matrix:</span></span><br><span class="line">     <span class="attr">arch:</span> [<span class="string">aarch64</span>, <span class="string">armhf</span>, <span class="string">ppc64el</span>, <span class="string">s390x</span>, <span class="string">riscv64</span>]</span><br><span class="line">     <span class="attr">compiler:</span> [<span class="string">gcc</span>, <span class="string">llvm</span>]</span><br><span class="line">     <span class="attr">include:</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">armhf</span></span><br><span class="line">         <span class="attr">binfmt:</span> <span class="string">arm</span></span><br><span class="line">         <span class="attr">gnupkg:</span> <span class="string">-arm-linux-gnueabihf</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">ppc64el</span></span><br><span class="line">         <span class="attr">binfmt:</span> <span class="string">ppc64le</span></span><br><span class="line">         <span class="attr">gnupkg:</span> <span class="string">-powerpc64le-linux-gnu</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">aarch64</span></span><br><span class="line">         <span class="attr">debarch:</span> <span class="string">arm64</span></span><br><span class="line">     <span class="attr">exclude:</span></span><br><span class="line">       <span class="comment"># Only GCC trunk supports the RISC-V V intrinsics and https://github.com/riscv-collab/riscv-gnu-toolchain</span></span><br><span class="line">       <span class="comment"># doesn't track a recent enough version yet</span></span><br><span class="line">       <span class="bullet">-</span> <span class="attr">arch:</span> <span class="string">riscv64</span></span><br><span class="line">         <span class="attr">compiler:</span> <span class="string">gcc</span></span><br></pre></td></tr></tbody></table></figure>
+<p>在<code>matrix</code>中，<code>include</code>字段用于扩展或覆盖矩阵的组合，在样例代码中，<code>[armhf, *]</code>的矩阵组合会被添加两个字段，即<code>[armhf, *, arm, -arm-linux-gnueabihf]</code>；同时<code>exclude</code>字段也预示着<code>riscv64</code>不会和<code>gcc</code>进行组合</p></li>
+<li><p><code>test-cross</code>
+该工作内容大致和<code>test-native</code>相同，主要使用<code>build-cross</code>中构建编译的<code>_build/bin/*</code>文件进行<code>ctest</code>测试
+<a target="_blank" rel="noopener" href="https://postimg.cc/gLHX3xZv"><img src="https://i.postimg.cc/J09NVJ7d/Screenshot-from-2024-09-12-16-41-51.png" alt="Screenshot-from-2024-09-12-16-41-51.png"></a></p></li>
 </ol>
-<p><img src="https://i.postimg.cc/mgLRtKM4/Euler-Method.png" style="zoom:33%;"></p>
-<p>可以看出Euler方法会造成误差累积，拟合程度较差</p>
-<h2 id="改进euler方法">改进Euler方法</h2>
-<h3 id="改进euler公式">改进Euler公式</h3>
-<p>改进Euler方法的特点在于使用两个端点的导数平均值作为延伸斜率，公式如下
-<span class="math display">\[
-\begin{cases}
-\overline{y_{i + 1}} = y_i + h*f(x_i, y_i) \\
-y_{i + 1} = y_i + \frac{h}{2} * [f(x_i, y_i) + f(x_{i + 1},
-\overline{y_{i + 1}})]
-\end{cases}
-\]</span> 公式中可以看出先使用Euler公式初步推算出 <span class="math inline">\(y_{i +
-1}\)</span>的值，再使用这个值在<strong>梯形公式</strong>中代出真正的<span class="math inline">\(y_{i + 1}\)</span></p>
-<blockquote>
-<p>另外一种改进Euler方法的写法如下，该种公式呈现形式用于方便计算机编程
-<span class="math display">\[
-\begin{cases}
-y_p = y_i + h*f(x_i, y_i) \\
-y_q = y_i + h*f(x_{i + 1}, y_p) \\
-y_{i + 1} = \frac{(y_p + y_q)}{2}
-\end{cases}
-\]</span></p>
-</blockquote>
-<h3 id="收敛阶的概念">收敛阶的概念</h3>
-<blockquote>
-<p>整体截断误差：<span class="math inline">\(e_i = y(x_i) -
-y_i\)</span>，对于某一个数值计算方法，计算出每一个点上精确值和估算值的差值，称为整体截断误差，但这种方法一般都非常麻烦</p>
-<p>局部阶段误差：<span class="math inline">\(R_{i+1} = y(i+1) - y_{i +
-1}\)</span>，$y_{i + 1} <span class="math inline">\(的运算结果建立在\)</span>y(x_i) = y_i<span class="math inline">\(的基础上，得到的\)</span>R_{i+1}$误差值称为局部截断误差</p>
-</blockquote>
-<p><strong>收敛阶定义</strong>：如果一个数值方法的局部截断误差是<span class="math inline">\(O(h^{p + 1})\)</span>，那么该方法是p阶的</p>
-<p><strong>改进Euler方法的收敛阶分析</strong>：根据泰勒公式展开，得到收敛阶为2</p>
-<p><img src="https://i.postimg.cc/yN5zpdG6/convergence.jpg" style="zoom: 25%;"></p>
-<h2 id="runge-kutta方法">Runge-Kutta方法</h2>
-<p>为了应对开始题目，先提出重要的经典四阶龙格库塔方法 <span class="math display">\[
-\begin{cases}
-y_{ i + 1 } = y_i + {h \over 6} * (K_1 + 2K_2 + 2K_3 + k_4)\\
-K_1 = f(x_i, y_i)\\
-K_2 = f(x_i + {h \over 2}, y_i + {h \over 2}K_1)\\
-K_3 = f(x_i + {h \over 2}, y_i + {h \over 2}K_2)\\
-K_4 = f(x_i + h, y_i + hK_4)
-\end{cases}
-\]</span></p>
+<h2 id="pytorch的ci测试">pytorch的CI测试</h2>
 
     </div>
 
@@ -314,8 +263,8 @@ K_4 = f(x_i + h, y_i + hK_4)
       <footer class="post-footer">
           
           <div class="post-tags">
-              <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag"><i class="fa fa-tag"></i> 数值计算</a>
-              <a href="/tags/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6/" rel="tag"><i class="fa fa-tag"></i> 高等数学</a>
+              <a href="/tags/pytorch/" rel="tag"><i class="fa fa-tag"></i> pytorch</a>
+              <a href="/tags/github/" rel="tag"><i class="fa fa-tag"></i> github</a>
           </div>
 
         
@@ -324,13 +273,10 @@ K_4 = f(x_i + h, y_i + hK_4)
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/11/27/%E7%BE%A4%E8%AE%BA%E5%A4%8D%E4%B9%A0/" rel="prev" title="群论复习">
-      <i class="fa fa-chevron-left"></i> 群论复习
+    <a href="/2024/09/11/CMU15445-Project/" rel="prev" title="CMU15445 Project">
+      <i class="fa fa-chevron-left"></i> CMU15445 Project
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/04/23/%E6%8F%92%E5%80%BC%E4%B8%8E%E6%8B%9F%E5%90%88/" rel="next" title="插值与拟合">
-      插值与拟合 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -389,7 +335,7 @@ K_4 = f(x_i + h, y_i + hK_4)
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#euler%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Euler方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%94%B9%E8%BF%9Beuler%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">改进Euler方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E8%BF%9Beuler%E5%85%AC%E5%BC%8F"><span class="nav-number">3.1.</span> <span class="nav-text">改进Euler公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E6%95%9B%E9%98%B6%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-number">3.2.</span> <span class="nav-text">收敛阶的概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#runge-kutta%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">Runge-Kutta方法</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pytorch%E7%9A%84ci%E9%9B%86%E6%88%90%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">pytorch的CI集成架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sleef%E7%9A%84ci%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.</span> <span class="nav-text">1. SLEEF的CI测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pytorch%E7%9A%84ci%E6%B5%8B%E8%AF%95"><span class="nav-number">1.2.</span> <span class="nav-text">pytorch的CI测试</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -550,59 +496,6 @@ if (document.querySelectorAll('pre.mermaid').length) {
   
 
   
-      
-
-<script>
-  if (typeof MathJax === 'undefined') {
-    window.MathJax = {
-      loader: {
-        source: {
-          '[tex]/amsCd': '[tex]/amscd',
-          '[tex]/AMScd': '[tex]/amscd'
-        }
-      },
-      tex: {
-        inlineMath: {'[+]': [['$', '$']]},
-        tags: 'ams'
-      },
-      options: {
-        renderActions: {
-          findScript: [10, doc => {
-            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
-              const display = !!node.type.match(/; *mode=display/);
-              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
-              const text = document.createTextNode('');
-              node.parentNode.replaceChild(text, node);
-              math.start = {node: text, delim: '', n: 0};
-              math.end = {node: text, delim: '', n: 0};
-              doc.math.push(math);
-            });
-          }, '', false],
-          insertedScript: [200, () => {
-            document.querySelectorAll('mjx-container').forEach(node => {
-              let target = node.parentNode;
-              if (target.nodeName.toLowerCase() === 'li') {
-                target.parentNode.classList.add('has-jax');
-              }
-            });
-          }, '', false]
-        }
-      }
-    };
-    (function () {
-      var script = document.createElement('script');
-      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
-      script.defer = true;
-      document.head.appendChild(script);
-    })();
-  } else {
-    MathJax.startup.document.state(0);
-    MathJax.texReset();
-    MathJax.typeset();
-  }
-</script>
-
-    
 
   
 
