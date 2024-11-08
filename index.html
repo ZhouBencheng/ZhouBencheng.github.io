@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/09/21/Untitled/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/10/08/MiniOB%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -176,7 +176,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/09/21/Untitled/" class="post-title-link" itemprop="url">未命名</a>
+            <a href="/2024/10/08/MiniOB%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">MiniOB源码阅读</a>
         </h2>
 
         <div class="post-meta">
@@ -186,7 +186,23 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2024-09-21 18:45:34" itemprop="dateCreated datePublished" datetime="2024-09-21T18:45:34+08:00">2024-09-21</time>
+              <time title="创建时间：2024-10-08 20:59:15" itemprop="dateCreated datePublished" datetime="2024-10-08T20:59:15+08:00">2024-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-10-14 16:12:27" itemprop="dateModified" datetime="2024-10-14T16:12:27+08:00">2024-10-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DB/" itemprop="url" rel="index"><span itemprop="name">DB</span></a>
+                </span>
             </span>
 
           
@@ -200,7 +216,22 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          
+          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── 网络模块</span><br><span class="line">├── 类型定义</span><br><span class="line">├── Resolver模块</span><br></pre></td></tr></tbody></table></figure>
+<h1 id="网络模块">网络模块</h1>
+<p><a target="_blank" rel="noopener" href="https://oceanbase.github.io/miniob/design/miniob-mysql-protocol/">MySQL协议</a></p>
+<p><code>MiniOB</code>中网络模块支持跨主机通讯的TCP协议<code>(TCP socket)</code>和单主机内部交流<code>(unix socket)</code>的普通文本协议。而官方所阐述的MySQL协议是数据库软件运行在应用层所使用的协议，其基于传输层的TCP协议工作，同样需要三次握手进行通讯。</p>
+<h1 id="类型定义">类型定义</h1>
+<p>在MiniOB关于数据库中属性类型的定义中有以下几个重要的类</p>
+<ul>
+<li><code>Value</code>:
+该类型内部同时包含成员变量<strong>属性类型</strong><code>attr_type</code>和<strong>属性值</strong><code>value_</code>（共用体），以及值的<strong>字节长度</strong><code>length_</code></li>
+<li><code>DataType</code>:
+该类型表示属性类型基类，是所有属性类型<code>IntegerType</code>
+<code>FloatType</code>等类型的父类，其中定义所有属性类型或有或没有的虚函数，例如四则运算和大小比较等</li>
+</ul>
+<h1 id="resolver模块"><code>Resolver</code>模块</h1>
+<p>在SQL语句处理中的resolver阶段，其核心功能在于将<code>Parser</code>阶段解析出的<code>ParsedSqlNode</code>类型转化为<code>Stmt</code>类型</p>
+
       
     </div>
 
@@ -459,7 +490,7 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
