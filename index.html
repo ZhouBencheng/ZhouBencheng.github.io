@@ -162,7 +162,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/10/08/MiniOB%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/">
+    <link itemprop="mainEntityOfPage" href="http://www.zhoubencheng.com/2024/12/09/linux%E9%85%8D%E7%BD%AEclash%E4%BB%A3%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/ME.ico">
@@ -176,7 +176,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/10/08/MiniOB%E6%BA%90%E7%A0%81%E9%98%85%E8%AF%BB/" class="post-title-link" itemprop="url">MiniOB源码阅读</a>
+            <a href="/2024/12/09/linux%E9%85%8D%E7%BD%AEclash%E4%BB%A3%E7%90%86/" class="post-title-link" itemprop="url">linux配置clash代理</a>
         </h2>
 
         <div class="post-meta">
@@ -185,23 +185,17 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2024-10-08 20:59:15" itemprop="dateCreated datePublished" datetime="2024-10-08T20:59:15+08:00">2024-10-08</time>
+              <time title="创建时间：2024-12-09 21:24:48 / 修改时间：21:49:58" itemprop="dateCreated datePublished" datetime="2024-12-09T21:24:48+08:00">2024-12-09</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-10-14 16:12:27" itemprop="dateModified" datetime="2024-10-14T16:12:27+08:00">2024-10-14</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DB/" itemprop="url" rel="index"><span itemprop="name">DB</span></a>
+                  <a href="/categories/Utils/" itemprop="url" rel="index"><span itemprop="name">Utils</span></a>
                 </span>
             </span>
 
@@ -216,21 +210,24 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <figure class="highlight plaintext"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">├── 网络模块</span><br><span class="line">├── 类型定义</span><br><span class="line">├── Resolver模块</span><br></pre></td></tr></tbody></table></figure>
-<h1 id="网络模块">网络模块</h1>
-<p><a target="_blank" rel="noopener" href="https://oceanbase.github.io/miniob/design/miniob-mysql-protocol/">MySQL协议</a></p>
-<p><code>MiniOB</code>中网络模块支持跨主机通讯的TCP协议<code>(TCP socket)</code>和单主机内部交流<code>(unix socket)</code>的普通文本协议。而官方所阐述的MySQL协议是数据库软件运行在应用层所使用的协议，其基于传输层的TCP协议工作，同样需要三次握手进行通讯。</p>
-<h1 id="类型定义">类型定义</h1>
-<p>在MiniOB关于数据库中属性类型的定义中有以下几个重要的类</p>
-<ul>
-<li><code>Value</code>:
-该类型内部同时包含成员变量<strong>属性类型</strong><code>attr_type</code>和<strong>属性值</strong><code>value_</code>（共用体），以及值的<strong>字节长度</strong><code>length_</code></li>
-<li><code>DataType</code>:
-该类型表示属性类型基类，是所有属性类型<code>IntegerType</code>
-<code>FloatType</code>等类型的父类，其中定义所有属性类型或有或没有的虚函数，例如四则运算和大小比较等</li>
-</ul>
-<h1 id="resolver模块"><code>Resolver</code>模块</h1>
-<p>在SQL语句处理中的resolver阶段，其核心功能在于将<code>Parser</code>阶段解析出的<code>ParsedSqlNode</code>类型转化为<code>Stmt</code>类型</p>
+          <h2 id="intro">intro</h2>
+<p>本博客的目的是在ubuntu上为<strong>不具备sudo权限</strong>的用户配置clash代理，用于更加稳定的连接国外镜像，所有操作全都将在命令行中进行，因此远程连接服务器的情形同样适用。</p>
+<h2 id="安装clash">安装clash</h2>
+<p>Github上clash原作者已经删库跑路，这是一个可以提供安装的<a target="_blank" rel="noopener" href="https://github.com/doreamon-design/clash/releases">网址</a>，在其中选择符合架构的安装包即可，我选择的是<code>clash_2.0.24_linux_amd64.tar.gz</code></p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将文件解压缩到用户目录下</span></span><br><span class="line">tar -xzvf clash_2.0.24_linux_amd64.tar.gz -C ~/</span><br></pre></td></tr></tbody></table></figure>
+<p>解压后得到可执行文件<code>clash</code>，<code>README.md</code>和<code>LISENCE</code>文件可以不管</p>
+<h2 id="获取代理的订阅地址">获取代理的订阅地址</h2>
+<p>复制你的代理订阅URL，一般在浏览器中直接输入你的订阅地址可以直接下载节点配置文件<code>config.yaml</code>，这个文件是在ubuntu中运行clash代理的关键配置文件，下载完成后传输到远程服务器</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将配置文件传输到服务器的用户目录下</span></span><br><span class="line">scp ~/config.yaml user_name@ip_address:~/</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配置clash">配置clash</h2>
+<p>在用户根目录下运行如下指令</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建clash配置文件夹</span></span><br><span class="line"><span class="built_in">mkdir</span> -p ~/.config/clash</span><br><span class="line"><span class="comment"># 将配置文件传入配置文件夹</span></span><br><span class="line"><span class="built_in">mv</span> ~/config.yaml ~/.config/clash</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="启动clash">启动clash</h2>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/clash -d ~/.config/clash </span><br></pre></td></tr></tbody></table></figure>
+<h2 id="配置系统代理">配置系统代理</h2>
+<p>将如下两行内容添加到<code>.bashrc</code>文件中</p>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">export http_proxy=http://127.0.0.1:7890</span><br><span class="line">export https_proxy=http://127.0.0.1:7890</span><br></pre></td></tr></tbody></table></figure>
+<p>最后刷新一下<code>source ~/.bashrc</code></p>
 
       
     </div>
@@ -363,7 +360,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-09-21 17:46:15" itemprop="dateModified" datetime="2024-09-21T17:46:15+08:00">2024-09-21</time>
+                <time title="修改时间：2024-11-08 20:50:28" itemprop="dateModified" datetime="2024-11-08T20:50:28+08:00">2024-11-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -371,7 +368,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DBMS/" itemprop="url" rel="index"><span itemprop="name">DBMS</span></a>
+                  <a href="/categories/DB/" itemprop="url" rel="index"><span itemprop="name">DB</span></a>
                 </span>
             </span>
 
@@ -490,13 +487,13 @@
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">25</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
